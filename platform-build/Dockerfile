@@ -17,6 +17,8 @@ ENV GATEWAY_INSTALL_DIR ${BASE_INSTALL_DIR}/gateway
 ENV DS_INSTALL_DIR ${BASE_INSTALL_DIR}/ds
 ENV PLATFORM_INSTALL_DIR ${BASE_INSTALL_DIR}/platform
 ENV UI_INSTALL_DIR ${BASE_INSTALL_DIR}/ui
+ENV TOMCAT_INSTALL_DIR ${BASE_INSTALL_DIR}/tomcat
+ENV IDM_INSTALL_DIR ${BASE_INSTALL_DIR}/idm
 
 #
 # Platform
@@ -45,7 +47,7 @@ RUN unzip -q  ${TMP_DIR}/*.zip -d  ${TMP_DIR}/unpack \
 RUN CAROOT=${GATEWAY_INSTALL_DIR}/secrets/server-cert mkcert \
   -key-file ${GATEWAY_INSTALL_DIR}/secrets/server-cert/server.pem \
   -cert-file ${GATEWAY_INSTALL_DIR}/secrets/server-cert/server.pem \
-  ais.local
+  pais.local
 
 COPY --chown=forgerock:root tools/gateway-config "${GATEWAY_INSTALL_DIR}/config"
 
@@ -74,6 +76,30 @@ RUN chmod 755 ${TMP_DIR}/setup-ds.sh \
     && rm -rf  ${TMP_DIR}/*
 
 ENTRYPOINT ["/bin/sh", "-c", "${PLATFORM_INSTALL_DIR}/bin/docker-entrypoint.sh"]
+
+#
+# Ping AM
+#
+
+COPY --chown=forgerock:root  dist/tomcat  ${TMP_DIR}
+RUN unzip -q  ${TMP_DIR}/*.zip -d  ${TMP_DIR}/unpack \
+    && mv  ${TMP_DIR}/unpack/* ${TOMCAT_INSTALL_DIR}/ \
+    && rm -rf  ${TMP_DIR}/*
+
+COPY --chown=forgerock:root  dist/am  ${TMP_DIR}
+RUN mkdir -p ${TOMCAT_INSTALL_DIR}/webapps/am \
+    && cd ${TOMCAT_INSTALL_DIR}/webapps/am  \
+    && jar -xf ${TMP_DIR}/*.war \
+    && rm -rf  ${TMP_DIR}/*
+
+#
+# Ping IDM
+#
+
+COPY --chown=forgerock:root  dist/idm  ${TMP_DIR}
+RUN unzip -q  ${TMP_DIR}/*.zip -d  ${TMP_DIR}/unpack \
+    && mv  ${TMP_DIR}/unpack/* ${IDM_INSTALL_DIR}/ \
+    && rm -rf  ${TMP_DIR}/*
 
 
 

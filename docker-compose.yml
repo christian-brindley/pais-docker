@@ -1,6 +1,6 @@
 services:
-  ais:
-    container_name: ais
+  pais:
+    container_name: pais
     build: platform-build
     cap_add:
       - NET_ADMIN

@@ -1,0 +1,64 @@
+{
+  "heap": [
+    {
+      "name": "ClientHandler",
+      "type": "ClientHandler",
+      "capture": "all"
+    },
+    {
+      "name": "SystemAndEnvSecretStore-IG",
+      "type": "SystemAndEnvSecretStore",
+      "config": {
+        "format": "PLAIN"
+      }
+    }
+  ],
+  "session": {
+    "type": "InMemorySessionManager",
+    "config": {
+      "cookie": {
+        "sameSite": "none",
+        "secure": true
+      }
+    }
+  },
+  "connectors": [
+    {
+      "host": "0.0.0.0",
+      "port": 8443,
+      "tls": {
+        "type": "ServerTlsOptions",
+        "config": {
+          "alpn": {
+            "enabled": true
+          },
+          "trustManager": {
+            "type": "TrustAllManager"
+          },
+          "keyManager": {
+            "type": "SecretsKeyManager",
+            "config": {
+              "signingSecretId": "server",
+              "secretsProvider": {
+                "name": "ServerIdentityStore",
+                "type": "FileSystemSecretStore",
+                "config": {
+                  "format": "PLAIN",
+                  "directory": "/opt/ping/gateway/secrets/server-cert",
+                  "suffix": ".pem",
+                  "mappings": [
+                    {
+                      "secretId": "server",
+                      "format": { "type": "PemPropertyFormat" }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "mode": "DEVELOPMENT"
+}

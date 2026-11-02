@@ -1,0 +1,23 @@
+{
+  "name": "50 Passthru",
+  "condition": "${matchesWithRegex(request.uri.path, '^/get$')}",
+  "baseURI": "https://postman-echo.com",
+  "handler": {
+    "type": "Chain",
+    "config": {
+      "filters": [
+        {
+          "name": "HeaderFilter-AddProtocol",
+          "type": "HeaderFilter",
+          "config": {
+            "messageType": "REQUEST",
+            "add": {
+              "Accept-API-Version": ["resource=2.1, protocol=1.0"]
+            }
+          }
+        }
+      ],
+      "handler": "ReverseProxyHandler"
+    }
+  }
+}

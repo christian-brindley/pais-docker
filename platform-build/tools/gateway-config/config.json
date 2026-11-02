@@ -1,0 +1,108 @@
+{
+  "handler": "_router",
+  "heap": [
+    {
+      "name": "_router",
+      "type": "Router",
+      "config": {
+        "scanInterval": "30 seconds",
+        "directory": "${openig.configDirectory}/routes",
+        "defaultHandler": {
+          "type": "DispatchHandler",
+          "config": {
+            "bindings": [
+              {
+                "condition": "${request.method == 'GET' and request.uri.path == '/'}",
+                "handler": {
+                  "type": "WelcomeHandler"
+                }
+              },
+              {
+                "condition": "${request.uri.path == '/'}",
+                "handler": {
+                  "type": "StaticResponseHandler",
+                  "config": {
+                    "status": 405,
+                    "reason": "Method Not Allowed"
+                  }
+                }
+              },
+              {
+                "handler": {
+                  "type": "StaticResponseHandler",
+                  "config": {
+                    "status": 404,
+                    "reason": "Not Found"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "capture",
+      "type": "CaptureDecorator",
+      "config": {
+        "captureEntity": true
+      }
+    },
+    {
+      "name": "ReverseProxyHandler",
+      "type": "ReverseProxyHandler",
+      "capture": ["request", "response"]
+    },
+    {
+      "name": "ForgeRockClientHandler",
+      "type": "Chain",
+      "config": {
+        "filters": ["TransactionIdOutboundFilter"],
+        "handler": "ClientHandler"
+      },
+      "capture": ["request", "response"]
+    },
+    {
+      "name": "ClientHandler",
+      "type": "ClientHandler",
+      "capture": ["request", "response"]
+    },
+    {
+      "name": "SystemAndEnvSecretStore-IG",
+      "type": "SystemAndEnvSecretStore",
+      "config": {
+        "format": "PLAIN"
+      }
+    },
+    {
+      "name": "SecretKeyPropertyFormat-Base64-AES",
+      "type": "SecretKeyPropertyFormat",
+      "config": {
+        "format": "BASE64",
+        "algorithm": "AES"
+      }
+    },
+    {
+      "name": "SecretStore-JwtSession",
+      "type": "SystemAndEnvSecretStore",
+      "config": {
+        "mappings": [
+          {
+            "secretId": "jwtsession.symmetric.secret.id",
+            "format": "SecretKeyPropertyFormat-Base64-AES"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Session",
+      "type": "JwtSession",
+      "config": {
+        "authenticatedEncryptionSecretId": "jwtsession.symmetric.secret.id",
+        "encryptionMethod": "A256CBC-HS512",
+        "secretsProvider": "SecretStore-JwtSession"
+      }
+    }
+  ],
+  "monitor": true
+}

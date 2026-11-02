@@ -1,15 +1,15 @@
 services:
   pais:
     container_name: pais
-    build: platform-build
+    build: docker-build
     cap_add:
       - NET_ADMIN
     ports:
       - 443:8443
     extra_hosts:
-      - "ds=10.30.1.10"
-      - "am=10.30.1.20"
-      - "idm=10.30.1.30"
+      - "ds=127.0.0.1"
+      - "am=127.0.0.1"
+      - "idm=127.0.0.1"
     volumes:
       - ./volumes/data:/var/ping/data
       - ./volumes/log:/var/ping/log

@@ -32,7 +32,7 @@ RUN echo "forgerock ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers.d/forgerock
 
 USER forgerock
 
-COPY --chown=forgerock:root tools/docker-entrypoint.sh ${PLATFORM_INSTALL_DIR}/bin/docker-entrypoint.sh
+COPY --chown=forgerock:root docker-entrypoint.sh ${PLATFORM_INSTALL_DIR}/bin/docker-entrypoint.sh
 RUN chmod 755 "${PLATFORM_INSTALL_DIR}/bin/docker-entrypoint.sh"
 
 #
@@ -49,7 +49,7 @@ RUN CAROOT=${GATEWAY_INSTALL_DIR}/secrets/server-cert mkcert \
   -cert-file ${GATEWAY_INSTALL_DIR}/secrets/server-cert/server.pem \
   pais.local
 
-COPY --chown=forgerock:root tools/gateway-config "${GATEWAY_INSTALL_DIR}/config"
+COPY --chown=forgerock:root tools/gateway/gateway-config "${GATEWAY_INSTALL_DIR}/config"
 
 #
 # Platform UI
@@ -70,12 +70,11 @@ RUN unzip -q  ${TMP_DIR}/*.zip -d  ${TMP_DIR}/unpack \
     && mv  ${TMP_DIR}/unpack/* ${DS_INSTALL_DIR}/ \
     && rm -rf  ${TMP_DIR}/*
 
-COPY --chown=forgerock:root  tools/setup-ds.sh ${TMP_DIR}/setup-ds.sh
+COPY --chown=forgerock:root  tools/ds/setup-ds.sh ${TMP_DIR}/setup-ds.sh
 RUN chmod 755 ${TMP_DIR}/setup-ds.sh \
     && ${TMP_DIR}/setup-ds.sh \
     && rm -rf  ${TMP_DIR}/*
 
-ENTRYPOINT ["/bin/sh", "-c", "${PLATFORM_INSTALL_DIR}/bin/docker-entrypoint.sh"]
 
 #
 # Ping AM
@@ -92,6 +91,15 @@ RUN mkdir -p ${TOMCAT_INSTALL_DIR}/webapps/am \
     && jar -xf ${TMP_DIR}/*.war \
     && rm -rf  ${TMP_DIR}/*
 
+COPY --chown=forgerock:root tools/am/setenv.sh ${TOMCAT_INSTALL_DIR}/bin/setenv.sh
+RUN chmod 755 ${TOMCAT_INSTALL_DIR}/bin/*
+
+COPY --chown=forgerock:root  tools/am/mkkeystore.sh ${TMP_DIR}/mkkeystore.sh
+RUN chmod 755 ${TMP_DIR}/mkkeystore.sh \
+    && ${TMP_DIR}/mkkeystore.sh \
+    && rm -rf  ${TMP_DIR}/*
+
+
 #
 # Ping IDM
 #
@@ -102,7 +110,6 @@ RUN unzip -q  ${TMP_DIR}/*.zip -d  ${TMP_DIR}/unpack \
     && rm -rf  ${TMP_DIR}/*
 
 
-
-
+ENTRYPOINT ["/bin/sh", "-c", "${PLATFORM_INSTALL_DIR}/bin/docker-entrypoint.sh"]
 
 

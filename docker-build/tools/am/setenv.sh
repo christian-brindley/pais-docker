@@ -1,0 +1,14 @@
+export CATALINA_OPTS="$CATALINA_OPTS -Dcom.sun.identity.sm.sms_object_filebased_enabled=true \
+-Dcom.sun.identity.configuration.directory=/opt/ping/am \
+-Dam.server.fqdn=pais.local \
+-Dam.server.port=443 \
+-Dam.server.protocol=https \
+-Dam.stores.user.servers=localhost:1636 \
+-Dam.stores.user.username=uid=am-identity-bind-account,ou=admins,ou=identities \
+-Dam.stores.user.password=password \
+-Dam.stores.application.servers=localhost:1636 \
+-Dam.stores.application.password=password \
+-Djavax.net.ssl.trustStore=/opt/ping/platform/am-truststore.p12 \
+-Djavax.net.ssl.trustStorePassword=password \
+-Djavax.net.ssl.trustStoreType=PKCS12 \
+-server -Xmx2g -XX:MetaspaceSize=256m -XX:MaxMetaspaceSize=256m"

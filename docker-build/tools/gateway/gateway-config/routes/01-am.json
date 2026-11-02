@@ -1,0 +1,24 @@
+{
+  "name": "01-am",
+  "condition": "${matchesWithRegex(request.uri.path, '^/am.*$')}",
+  "baseURI": "http://localhost:8080",
+  "handler": {
+    "type": "Chain",
+    "config": {
+      "filters": [
+        {
+          "type": "HeaderFilter",
+          "config": {
+            "messageType": "REQUEST",
+            "replace": {
+              "X-Forwarded-Proto": ["https"],
+              "X-Forwarded-Host": ["pais.local"],
+              "X-Forwarded-Port": ["443"]
+            }
+          }
+        }
+      ],
+      "handler": "ReverseProxyHandler"
+    }
+  }
+}

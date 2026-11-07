@@ -9,7 +9,10 @@ RUN apt-get install -y \
   mkcert \
   unzip \
   gosu \
-  sudo
+  sudo \
+  gettext-base \
+  git \
+  rsync
 
 ENV BASE_INSTALL_DIR /opt/ping
 ENV TMP_DIR ${BASE_INSTALL_DIR}/tmp
@@ -19,6 +22,7 @@ ENV PLATFORM_INSTALL_DIR ${BASE_INSTALL_DIR}/platform
 ENV UI_INSTALL_DIR ${BASE_INSTALL_DIR}/ui
 ENV TOMCAT_INSTALL_DIR ${BASE_INSTALL_DIR}/tomcat
 ENV IDM_INSTALL_DIR ${BASE_INSTALL_DIR}/idm
+ENV AM_INSTALL_DIR ${BASE_INSTALL_DIR}/am
 
 #
 # Platform
@@ -26,7 +30,6 @@ ENV IDM_INSTALL_DIR ${BASE_INSTALL_DIR}/idm
 
 RUN mkdir ${BASE_INSTALL_DIR} ${TMP_DIR}
 RUN chown forgerock:root ${BASE_INSTALL_DIR}  ${TMP_DIR}
-
 
 RUN echo "forgerock ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers.d/forgerock
 
@@ -55,11 +58,20 @@ COPY --chown=forgerock:root tools/gateway/gateway-config "${GATEWAY_INSTALL_DIR}
 # Platform UI
 #
 
+# COPY --chown=forgerock:root  dist/idm-ui ${TMP_DIR}
+# RUN unzip -q  ${TMP_DIR}/*.zip -d  ${TMP_DIR}/unpack \
+#     && mv  ${TMP_DIR}/unpack/* ${UI_INSTALL_DIR}/ \
+#     && rm -rf  ${TMP_DIR}/*
+
 COPY --chown=forgerock:root  dist/ui ${TMP_DIR}
 RUN unzip -q  ${TMP_DIR}/*.zip -d  ${TMP_DIR}/unpack \
     && mv  ${TMP_DIR}/unpack/* ${UI_INSTALL_DIR}/ \
     && rm -rf  ${TMP_DIR}/*
 
+COPY --chown=forgerock:root  tools/ui/customise-ui.sh ${UI_INSTALL_DIR}/customise-ui.sh
+RUN chmod 755 ${UI_INSTALL_DIR}/customise-ui.sh ${UI_INSTALL_DIR}/variable_replacement.sh \
+    && cd ${UI_INSTALL_DIR} \
+    && ./customise-ui.sh 
 
 #
 # Ping DS
@@ -70,11 +82,13 @@ RUN unzip -q  ${TMP_DIR}/*.zip -d  ${TMP_DIR}/unpack \
     && mv  ${TMP_DIR}/unpack/* ${DS_INSTALL_DIR}/ \
     && rm -rf  ${TMP_DIR}/*
 
-COPY --chown=forgerock:root  tools/ds/setup-ds.sh ${TMP_DIR}/setup-ds.sh
-RUN chmod 755 ${TMP_DIR}/setup-ds.sh \
-    && ${TMP_DIR}/setup-ds.sh \
-    && rm -rf  ${TMP_DIR}/*
+COPY --chown=forgerock:root tools/ds/setup-profiles/PAIS ${DS_INSTALL_DIR}/template/setup-profiles/PAIS
 
+COPY --chown=forgerock:root  tools/ds/setup-ds.sh ${TMP_DIR}/setup-ds.sh
+COPY --chown=forgerock:root  tools/ds/applications.ldif ${TMP_DIR}/applications.ldif
+RUN chmod 755 ${TMP_DIR}/setup-ds.sh \
+    && ${TMP_DIR}/setup-ds.sh ${TMP_DIR}/applications.ldif \
+    && rm -rf  ${TMP_DIR}/*
 
 #
 # Ping AM
@@ -99,6 +113,11 @@ RUN chmod 755 ${TMP_DIR}/mkkeystore.sh \
     && ${TMP_DIR}/mkkeystore.sh \
     && rm -rf  ${TMP_DIR}/*
 
+COPY --chown=forgerock:root  tools/am/am-config.zip  ${TMP_DIR}
+RUN mkdir -p ${AM_INSTALL_DIR} \
+    && cd ${AM_INSTALL_DIR}  \
+    && unzip  ${TMP_DIR}/am-config.zip \
+    && rm -rf  ${TMP_DIR}/*
 
 #
 # Ping IDM
@@ -108,6 +127,10 @@ COPY --chown=forgerock:root  dist/idm  ${TMP_DIR}
 RUN unzip -q  ${TMP_DIR}/*.zip -d  ${TMP_DIR}/unpack \
     && mv  ${TMP_DIR}/unpack/* ${IDM_INSTALL_DIR}/ \
     && rm -rf  ${TMP_DIR}/*
+
+COPY --chown=forgerock:root  tools/idm/authentication.json  ${IDM_INSTALL_DIR}/conf/authentication.json
+COPY --chown=forgerock:root  tools/idm/repo.ds.json  ${IDM_INSTALL_DIR}/conf/repo.ds.json
+COPY --chown=forgerock:root  tools/idm/boot.properties  ${IDM_INSTALL_DIR}/resolver/boot.properties
 
 
 ENTRYPOINT ["/bin/sh", "-c", "${PLATFORM_INSTALL_DIR}/bin/docker-entrypoint.sh"]

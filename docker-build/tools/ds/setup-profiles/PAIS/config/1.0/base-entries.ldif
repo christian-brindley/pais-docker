@@ -1,0 +1,314 @@
+#
+# Copyright 2011-2025 Ping Identity Corporation. All Rights Reserved
+#
+# This code is to be used exclusively in connection with Ping Identity
+# Corporation software or services. Ping Identity Corporation only offers
+# such software or services to legal entities who have entered into a
+# binding license agreement with Ping Identity Corporation.
+#
+
+dn: &{AM_CONFIG_BASE_DN}
+objectclass: top
+objectclass: untypedObject
+aci: (targetattr="*")(version 3.0; acl "Read and write application data"; allow (all)
+ (userdn = "ldap:///uid=am-config,ou=admins,&{AM_CONFIG_BASE_DN}");)
+aci: (targetattr="+")(version 3.0; acl "Read operational attributes"; allow (read, search, compare)
+ (userdn = "ldap:///uid=am-config,ou=admins,&{AM_CONFIG_BASE_DN}");)
+aci: (targetcontrol="PersistentSearch")(version 3.0; acl "Persistent searches"; allow (read)
+ (userdn = "ldap:///uid=am-config,ou=admins,&{AM_CONFIG_BASE_DN}");)
+
+dn: ou=admins,&{AM_CONFIG_BASE_DN}
+objectclass: top
+objectclass: organizationalUnit
+ou: admins
+
+dn: uid=am-config,ou=admins,&{AM_CONFIG_BASE_DN}
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: AM Configuration Admin
+sn: AM
+uid: openam_config
+userPassword: &{AM_CONFIG_ADMIN_PASSWORD}
+ds-privilege-name: subentry-write
+ds-privilege-name: update-schema
+
+dn: ou=services,&{AM_CONFIG_BASE_DN}
+objectClass: organizationalunit
+objectClass: top
+ou: services
+
+dn: ou=AgentService,ou=services,&{AM_CONFIG_BASE_DN}
+objectClass: organizationalUnit
+objectClass: sunServiceComponent
+objectClass: top
+ou: AgentService
+
+dn: ou=1.0,ou=AgentService,ou=services,&{AM_CONFIG_BASE_DN}
+objectClass: sunService
+objectClass: top
+ou: 1.0
+
+dn: ou=OrganizationConfig,ou=1.0,ou=AgentService,ou=services,&{AM_CONFIG_BASE_DN}
+objectClass: organizationalunit
+objectClass: top
+ou: OrganizationConfig
+
+dn: ou=default,ou=OrganizationConfig,ou=1.0,ou=AgentService,ou=services,&{AM_CONFIG_BASE_DN}
+objectClass: sunServiceComponent
+objectClass: top
+objectClass: organizationalunit
+ou: default
+
+dn: ou=idm-admin-ui,ou=default,ou=OrganizationConfig,ou=1.0,ou=AgentService,ou=services,&{AM_CONFIG_BASE_DN}
+objectClass: organizationalUnit
+objectClass: sunServiceComponent
+objectClass: top
+ou: idm-admin-ui
+sunKeyValue: issueRefreshToken=true
+sunKeyValue: validateScopePluginType=PROVIDER
+sunKeyValue: logoUri=
+sunKeyValue: com.forgerock.openam.oauth2provider.subjectType=public
+sunKeyValue: com.forgerock.openam.oauth2provider.tokenEndpointAuthSigningAlgorithm=RS256
+sunKeyValue: idTokenEncryptionEnabled=false
+sunKeyValue: clientUri=
+sunKeyValue: secretLabelIdentifier=
+sunKeyValue: com.forgerock.openam.oauth2provider.authLevel=0
+sunKeyValue: tokenEncryptionEnabled=false
+sunKeyValue: com.forgerock.openam.oauth2provider.tokenintrospection.encryptedResponseEnc=A128CBC-HS256
+sunKeyValue: enableApplicationContext=false
+sunKeyValue: com.forgerock.openam.oauth2provider.claims=
+sunKeyValue: acceptAudienceParametersInTokenExchangeRequests=false
+sunKeyValue: com.forgerock.openam.oauth2provider.requestObjectSigningAlg=
+sunKeyValue: evaluateScopePluginType=PROVIDER
+sunKeyValue: backchannel_logout_uri=
+sunKeyValue: authorizationResponseSigningAlgorithm=RS256
+sunKeyValue: oidcMayActScript=[Empty]
+sunKeyValue: oidcClaimsScript=[Empty]
+sunKeyValue: com.forgerock.openam.oauth2provider.clientJwtPublicKey=
+sunKeyValue: scopesPolicySet=oauth2Scopes
+sunKeyValue: com.forgerock.openam.oauth2provider.responseTypes=[0]=code
+sunKeyValue: com.forgerock.openam.oauth2provider.responseTypes=[6]=code token id_token
+sunKeyValue: com.forgerock.openam.oauth2provider.responseTypes=[8]=device_code id_token
+sunKeyValue: com.forgerock.openam.oauth2provider.responseTypes=[4]=token id_token
+sunKeyValue: com.forgerock.openam.oauth2provider.responseTypes=[2]=id_token
+sunKeyValue: com.forgerock.openam.oauth2provider.responseTypes=[3]=code token
+sunKeyValue: com.forgerock.openam.oauth2provider.responseTypes=[1]=token
+sunKeyValue: com.forgerock.openam.oauth2provider.responseTypes=[5]=code id_token
+sunKeyValue: com.forgerock.openam.oauth2provider.responseTypes=[7]=device_code
+sunKeyValue: idTokenPublicEncryptionKey=
+sunKeyValue: defaultAcrValues=
+sunKeyValue: com.forgerock.openam.oauth2provider.oauth.mixUpMitigationEnabled=false
+sunKeyValue: com.forgerock.openam.oauth2provider.subjectDn=
+sunKeyValue: oauth2ClientCustomProperties=
+sunKeyValue: com.forgerock.openam.oauth2provider.jwtTokenLifeTime=0
+sunKeyValue: accessTokenModificationPluginType=PROVIDER
+sunKeyValue: sunIdentityServerDeviceStatus=Active
+sunKeyValue: policyUri=
+sunKeyValue: com.forgerock.openam.oauth2provider.jwkStoreCacheMissCacheTime=60000
+sunKeyValue: authorizeEndpointDataProviderClass=org.forgerock.oauth2.core.plugins.registry.DefaultEndpointDataProvider
+sunKeyValue: useForceAuthnForMaxAge=false
+sunKeyValue: com.forgerock.openam.oauth2provider.defaultMaxAgeEnabled=false
+sunKeyValue: com.forgerock.openam.oauth2provider.softwareVersion=
+sunKeyValue: com.forgerock.openam.oauth2provider.tosURI=
+sunKeyValue: com.forgerock.openam.oauth2provider.sectorIdentifierURI=
+sunKeyValue: com.forgerock.openam.oauth2provider.jwks=
+sunKeyValue: com.forgerock.openam.oauth2provider.tokenEndPointAuthMethod=none
+sunKeyValue: idTokenEncryptionMethod=A128CBC-HS256
+sunKeyValue: refreshTokenGracePeriod=0
+sunKeyValue: isConsentImplied=true
+sunKeyValue: com.forgerock.openam.oauth2provider.clientName=
+sunKeyValue: oidcClaimsPluginType=PROVIDER
+sunKeyValue: com.forgerock.openam.oauth2provider.softwareIdentity=
+sunKeyValue: com.forgerock.openam.oauth2provider.clientType=Public
+sunKeyValue: providerOverridesEnabled=false
+sunKeyValue: com.forgerock.openam.oauth2provider.jwksURI=
+sunKeyValue: authorizeEndpointDataProviderScript=[Empty]
+sunKeyValue: com.forgerock.openam.oauth2provider.tokenintrospection.encryptedResponseAlg=RSA-OAEP-256
+sunKeyValue: statelessTokensEnabled=false
+sunKeyValue: com.forgerock.openam.oauth2provider.grantTypes=[0]=authorization_code
+sunKeyValue: com.forgerock.openam.oauth2provider.grantTypes=[1]=implicit
+sunKeyValue: allowedResourceServerAudienceValues=
+sunKeyValue: require_pushed_authorization_requests=false
+sunKeyValue: com.forgerock.openam.oauth2provider.loopback.interface.redirection=false
+sunKeyValue: com.forgerock.openam.oauth2provider.description=
+sunKeyValue: authorizeEndpointDataProviderPluginType=PROVIDER
+sunKeyValue: com.forgerock.openam.oauth2provider.requestURIs=
+sunKeyValue: authorizationResponseEncryptionMethod=
+sunKeyValue: useTokenIntrospectionClaimForJWT=false
+sunKeyValue: remoteConsentServiceId=
+sunKeyValue: com.forgerock.openam.oauth2provider.name=
+sunKeyValue: enableRemoteConsent=false
+sunKeyValue: com.forgerock.openam.oauth2provider.contacts=
+sunKeyValue: com.forgerock.openam.oauth2provider.clientSessionURI=
+sunKeyValue: validateScopeClass=org.forgerock.oauth2.core.plugins.registry.DefaultScopeValidator
+sunKeyValue: usePolicyEngineForScope=false
+sunKeyValue: com.forgerock.openam.oauth2provider.defaultScopes=
+sunKeyValue: agentgroup=
+sunKeyValue: evaluateScopeClass=org.forgerock.oauth2.core.plugins.registry.DefaultScopeEvaluator
+sunKeyValue: com.forgerock.openam.oauth2provider.accessToken=
+sunKeyValue: com.forgerock.openam.oauth2provider.refreshTokenLifeTime=0
+sunKeyValue: overrideableOIDCClaims=
+sunKeyValue: com.forgerock.openam.oauth2provider.userinfo.responseFormat=JSON
+sunKeyValue: com.forgerock.openam.oauth2provider.useCertificateBoundAccessTokens=false
+sunKeyValue: com.forgerock.openam.oauth2provider.publicKeyLocation=jwks_uri
+sunKeyValue: com.forgerock.openam.oauth2provider.scopes=[0]=fr:idm:*
+sunKeyValue: com.forgerock.openam.oauth2provider.scopes=[1]=openid
+sunKeyValue: com.forgerock.openam.oauth2provider.tokenintrospection.responseFormat=JSON
+sunKeyValue: acceptedJwtIssuers=
+sunKeyValue: accessTokenMayActScript=[Empty]
+sunKeyValue: com.forgerock.openam.oauth2provider.accessTokenLifeTime=0
+sunKeyValue: evaluateScopeScript=[Empty]
+sunKeyValue: com.forgerock.openam.oauth2provider.requestObjectEncryptionEnc=A128CBC-HS256
+sunKeyValue: com.forgerock.openam.oauth2provider.userinfo.signedResponseAlg=
+sunKeyValue: clientsCanSkipConsent=false
+sunKeyValue: idTokenEncryptionAlgorithm=RSA-OAEP-256
+sunKeyValue: com.forgerock.openam.oauth2provider.requestObjectEncryptionAlg=
+sunKeyValue: authorizationResponseEncryptionAlgorithm=
+sunKeyValue: com.forgerock.openam.oauth2provider.tlsTrustedCert=
+sunKeyValue: com.forgerock.openam.oauth2provider.redirectionURIs=[0]=https://pais.local/platform/appAuthHelperRedirect.html
+sunKeyValue: com.forgerock.openam.oauth2provider.redirectionURIs=[1]=https://pais.local/platform/sessionCheck.html
+sunKeyValue: accessTokenModificationScript=[Empty]
+sunKeyValue: com.forgerock.openam.oauth2provider.claimsRedirectionURIs=
+sunKeyValue: com.forgerock.openam.oauth2provider.jwksCacheTimeout=3600000
+sunKeyValue: com.forgerock.openam.oauth2provider.userinfo.encryptedResponseAlg=
+sunKeyValue: com.forgerock.openam.oauth2provider.idTokenSignedResponseAlg=RS256
+sunKeyValue: issueRefreshTokenOnRefreshedToken=true
+sunKeyValue: com.forgerock.openam.oauth2provider.authorizationCodeLifeTime=0
+sunKeyValue: com.forgerock.openam.oauth2provider.defaultMaxAge=600
+sunKeyValue: validateScopeScript=[Empty]
+sunKeyValue: treeName=[Empty]
+sunKeyValue: com.forgerock.openam.oauth2provider.tokenintrospection.signedResponseAlg=RS256
+sunKeyValue: com.forgerock.openam.oauth2provider.userinfo.encryptedResponseEnc=A128CBC-HS256
+sunKeyValue: com.forgerock.openam.oauth2provider.postLogoutRedirectURI=
+sunKeyValue: backchannel_logout_session_required=false
+sunserviceID: OAuth2Client
+sunsmspriority: 0
+sunxmlKeyValue: javascriptOrigins=
+
+dn: ou=idm-resource-server,ou=default,ou=OrganizationConfig,ou=1.0,ou=AgentService,ou=services,&{AM_CONFIG_BASE_DN}
+objectClass: organizationalUnit
+objectClass: sunServiceComponent
+objectClass: top
+ou: idm-resource-server
+sunKeyValue: issueRefreshToken=true
+sunKeyValue: validateScopePluginType=PROVIDER
+sunKeyValue: logoUri=
+sunKeyValue: com.forgerock.openam.oauth2provider.subjectType=public
+sunKeyValue: com.forgerock.openam.oauth2provider.tokenEndpointAuthSigningAlgorithm=RS256
+sunKeyValue: idTokenEncryptionEnabled=false
+sunKeyValue: clientUri=
+sunKeyValue: secretLabelIdentifier=
+sunKeyValue: com.forgerock.openam.oauth2provider.authLevel=0
+sunKeyValue: tokenEncryptionEnabled=false
+sunKeyValue: com.forgerock.openam.oauth2provider.tokenintrospection.encryptedResponseEnc=A128CBC-HS256
+sunKeyValue: enableApplicationContext=false
+sunKeyValue: com.forgerock.openam.oauth2provider.claims=
+sunKeyValue: acceptAudienceParametersInTokenExchangeRequests=false
+sunKeyValue: com.forgerock.openam.oauth2provider.requestObjectSigningAlg=
+sunKeyValue: evaluateScopePluginType=PROVIDER
+sunKeyValue: backchannel_logout_uri=
+sunKeyValue: authorizationResponseSigningAlgorithm=RS256
+sunKeyValue: oidcMayActScript=[Empty]
+sunKeyValue: oidcClaimsScript=[Empty]
+sunKeyValue: com.forgerock.openam.oauth2provider.clientJwtPublicKey=
+sunKeyValue: scopesPolicySet=oauth2Scopes
+sunKeyValue: com.forgerock.openam.oauth2provider.responseTypes=[0]=code
+sunKeyValue: com.forgerock.openam.oauth2provider.responseTypes=[6]=code token id_token
+sunKeyValue: com.forgerock.openam.oauth2provider.responseTypes=[8]=device_code id_token
+sunKeyValue: com.forgerock.openam.oauth2provider.responseTypes=[4]=token id_token
+sunKeyValue: com.forgerock.openam.oauth2provider.responseTypes=[2]=id_token
+sunKeyValue: com.forgerock.openam.oauth2provider.responseTypes=[3]=code token
+sunKeyValue: com.forgerock.openam.oauth2provider.responseTypes=[1]=token
+sunKeyValue: com.forgerock.openam.oauth2provider.responseTypes=[5]=code id_token
+sunKeyValue: com.forgerock.openam.oauth2provider.responseTypes=[7]=device_code
+sunKeyValue: idTokenPublicEncryptionKey=
+sunKeyValue: defaultAcrValues=
+sunKeyValue: com.forgerock.openam.oauth2provider.oauth.mixUpMitigationEnabled=false
+sunKeyValue: com.forgerock.openam.oauth2provider.subjectDn=
+sunKeyValue: oauth2ClientCustomProperties=
+sunKeyValue: com.forgerock.openam.oauth2provider.jwtTokenLifeTime=0
+sunKeyValue: accessTokenModificationPluginType=PROVIDER
+sunKeyValue: sunIdentityServerDeviceStatus=Active
+sunKeyValue: policyUri=
+sunKeyValue: com.forgerock.openam.oauth2provider.jwkStoreCacheMissCacheTime=60000
+sunKeyValue: authorizeEndpointDataProviderClass=org.forgerock.oauth2.core.plugins.registry.DefaultEndpointDataProvider
+sunKeyValue: useForceAuthnForMaxAge=false
+sunKeyValue: com.forgerock.openam.oauth2provider.defaultMaxAgeEnabled=false
+sunKeyValue: com.forgerock.openam.oauth2provider.softwareVersion=
+sunKeyValue: com.forgerock.openam.oauth2provider.tosURI=
+sunKeyValue: com.forgerock.openam.oauth2provider.sectorIdentifierURI=
+sunKeyValue: com.forgerock.openam.oauth2provider.jwks=
+sunKeyValue: com.forgerock.openam.oauth2provider.tokenEndPointAuthMethod=client_secret_basic
+sunKeyValue: idTokenEncryptionMethod=A128CBC-HS256
+sunKeyValue: refreshTokenGracePeriod=0
+sunKeyValue: isConsentImplied=false
+sunKeyValue: com.forgerock.openam.oauth2provider.clientName=
+sunKeyValue: oidcClaimsPluginType=PROVIDER
+sunKeyValue: com.forgerock.openam.oauth2provider.softwareIdentity=
+sunKeyValue: com.forgerock.openam.oauth2provider.clientType=Confidential
+sunKeyValue: providerOverridesEnabled=false
+sunKeyValue: com.forgerock.openam.oauth2provider.jwksURI=
+sunKeyValue: authorizeEndpointDataProviderScript=[Empty]
+sunKeyValue: com.forgerock.openam.oauth2provider.tokenintrospection.encryptedResponseAlg=RSA-OAEP-256
+sunKeyValue: statelessTokensEnabled=false
+sunKeyValue: com.forgerock.openam.oauth2provider.grantTypes=[0]=authorization_code
+sunKeyValue: allowedResourceServerAudienceValues=
+sunKeyValue: require_pushed_authorization_requests=false
+sunKeyValue: com.forgerock.openam.oauth2provider.loopback.interface.redirection=false
+sunKeyValue: com.forgerock.openam.oauth2provider.description=
+sunKeyValue: authorizeEndpointDataProviderPluginType=PROVIDER
+sunKeyValue: com.forgerock.openam.oauth2provider.requestURIs=
+sunKeyValue: authorizationResponseEncryptionMethod=
+sunKeyValue: useTokenIntrospectionClaimForJWT=false
+sunKeyValue: remoteConsentServiceId=
+sunKeyValue: com.forgerock.openam.oauth2provider.name=
+sunKeyValue: enableRemoteConsent=false
+sunKeyValue: com.forgerock.openam.oauth2provider.contacts=
+sunKeyValue: com.forgerock.openam.oauth2provider.clientSessionURI=
+sunKeyValue: validateScopeClass=org.forgerock.oauth2.core.plugins.registry.DefaultScopeValidator
+sunKeyValue: usePolicyEngineForScope=false
+sunKeyValue: com.forgerock.openam.oauth2provider.defaultScopes=
+sunKeyValue: agentgroup=
+sunKeyValue: evaluateScopeClass=org.forgerock.oauth2.core.plugins.registry.DefaultScopeEvaluator
+sunKeyValue: com.forgerock.openam.oauth2provider.accessToken=
+sunKeyValue: com.forgerock.openam.oauth2provider.refreshTokenLifeTime=0
+sunKeyValue: overrideableOIDCClaims=
+sunKeyValue: com.forgerock.openam.oauth2provider.userinfo.responseFormat=JSON
+sunKeyValue: com.forgerock.openam.oauth2provider.useCertificateBoundAccessTokens=false
+sunKeyValue: com.forgerock.openam.oauth2provider.publicKeyLocation=jwks_uri
+sunKeyValue: com.forgerock.openam.oauth2provider.scopes=[1]=am-introspect-all-tokens-any-realm
+sunKeyValue: com.forgerock.openam.oauth2provider.scopes=[0]=am-introspect-all-tokens
+sunKeyValue: com.forgerock.openam.oauth2provider.tokenintrospection.responseFormat=JSON
+sunKeyValue: acceptedJwtIssuers=
+sunKeyValue: accessTokenMayActScript=[Empty]
+sunKeyValue: com.forgerock.openam.oauth2provider.accessTokenLifeTime=0
+sunKeyValue: evaluateScopeScript=[Empty]
+sunKeyValue: com.forgerock.openam.oauth2provider.requestObjectEncryptionEnc=A128CBC-HS256
+sunKeyValue: com.forgerock.openam.oauth2provider.userinfo.signedResponseAlg=
+sunKeyValue: clientsCanSkipConsent=false
+sunKeyValue: idTokenEncryptionAlgorithm=RSA-OAEP-256
+sunKeyValue: com.forgerock.openam.oauth2provider.requestObjectEncryptionAlg=
+sunKeyValue: authorizationResponseEncryptionAlgorithm=
+sunKeyValue: com.forgerock.openam.oauth2provider.tlsTrustedCert=
+sunKeyValue: com.forgerock.openam.oauth2provider.redirectionURIs=
+sunKeyValue: accessTokenModificationScript=[Empty]
+sunKeyValue: com.forgerock.openam.oauth2provider.claimsRedirectionURIs=
+sunKeyValue: com.forgerock.openam.oauth2provider.jwksCacheTimeout=3600000
+sunKeyValue: com.forgerock.openam.oauth2provider.userinfo.encryptedResponseAlg=
+sunKeyValue: com.forgerock.openam.oauth2provider.idTokenSignedResponseAlg=RS256
+sunKeyValue: issueRefreshTokenOnRefreshedToken=true
+sunKeyValue: com.forgerock.openam.oauth2provider.authorizationCodeLifeTime=0
+sunKeyValue: com.forgerock.openam.oauth2provider.defaultMaxAge=600
+sunKeyValue: validateScopeScript=[Empty]
+sunKeyValue: treeName=[Empty]
+sunKeyValue: com.forgerock.openam.oauth2provider.tokenintrospection.signedResponseAlg=RS256
+sunKeyValue: com.forgerock.openam.oauth2provider.userinfo.encryptedResponseEnc=A128CBC-HS256
+sunKeyValue: com.forgerock.openam.oauth2provider.postLogoutRedirectURI=
+sunKeyValue: backchannel_logout_session_required=false
+sunKeyValue: userpassword=AQICYNQ0UPmSLNA7n4G4Ukwm5pOMAqk4QJqm
+sunserviceID: OAuth2Client
+sunsmspriority: 0
+sunxmlKeyValue: javascriptOrigins=
+

@@ -1,7 +1,7 @@
 {
   "name": "01-am",
   "condition": "${matchesWithRegex(request.uri.path, '^/am.*$')}",
-  "baseURI": "http://localhost:8080",
+  "baseURI": "http://am:8080",
   "handler": {
     "type": "Chain",
     "config": {
@@ -11,6 +11,7 @@
           "config": {
             "messageType": "REQUEST",
             "replace": {
+              "Host": ["pais.local"],
               "X-Forwarded-Proto": ["https"],
               "X-Forwarded-Host": ["pais.local"],
               "X-Forwarded-Port": ["443"]

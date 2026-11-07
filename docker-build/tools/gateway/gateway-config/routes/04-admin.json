@@ -1,0 +1,12 @@
+{
+  "name": "04-admin",
+  "condition": "${matchesWithRegex(request.uri.path, '^/admin(/.*)?$')}",
+  "handler": {
+    "type": "ResourceHandler",
+    "config": {
+      "directories": ["/opt/ping/idm-ui/www/platform"],
+      "basePath": "/admin",
+      "welcomePages": ["index.html"]
+    }
+  }
+}

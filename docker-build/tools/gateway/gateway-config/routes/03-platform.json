@@ -1,0 +1,12 @@
+{
+  "name": "03-platform",
+  "condition": "${matchesWithRegex(request.uri.path, '^/platform(/.*)?$')}",
+  "handler": {
+    "type": "ResourceHandler",
+    "config": {
+      "directories": ["/opt/ping/ui/www/platform"],
+      "basePath": "/platform",
+      "welcomePages": ["index.html"]
+    }
+  }
+}

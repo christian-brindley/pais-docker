@@ -1,0 +1,12 @@
+{
+  "name": "00-login",
+  "condition": "${matchesWithRegex(request.uri.path, '^/am/XUI(/.*)?$')}",
+  "handler": {
+    "type": "ResourceHandler",
+    "config": {
+      "directories": ["/opt/ping/ui/www/login"],
+      "basePath": "/am/XUI",
+      "welcomePages": ["index.html"]
+    }
+  }
+}

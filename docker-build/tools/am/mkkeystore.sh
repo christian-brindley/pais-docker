@@ -1,25 +1,21 @@
 # Script to create AM keystore
 # v1
 
-KEYSTORE_DIR="/opt/ping/am/security/keystores"
+KEYSTORE_DIR="/opt/ping/platform/security/keystores"
 KEYSTORE_FILE="keystore.jceks"
-STOREPASS_DIR="/opt/ping/am/security/secrets/default"
-STOREPASS_FILE=".storepass"
-KEYPASS_FILE=".keypass"
-KEYSTORE_PASS="password"
 KEYSTORE_TYPE="JCEKS"
+KEYSTORE_PASS="password"
+PASSWORDS_DIR="/opt/ping/platform/security/secrets/default"
 
 DN_SUFFIX="DC=pais,DC=local"
 
-keystore_path="${KEYSTORE_DIR}/${KEYSTORE_FILE}"
-storepass_path="${STOREPASS_DIR}/${STOREPASS_FILE}"
-keypass_path="${STOREPASS_DIR}/${KEYPASS_FILE}"
+mkdir -p "$KEYSTORE_DIR" "$PASSWORDS_DIR"
+keystore_path="$KEYSTORE_DIR/keystore.jceks"
 
-mkdir -p "$KEYSTORE_DIR" "$STOREPASS_DIR"
-
-echo -n "$KEYSTORE_PASS" > "$storepass_path"
-echo -n "$KEYSTORE_PASS" > "$keypass_path"
-
+echo -n "$KEYSTORE_PASS" > "${PASSWORDS_DIR}/storepass"
+echo -n "$KEYSTORE_PASS" > "${PASSWORDS_DIR}/.storepass"
+echo -n "$KEYSTORE_PASS" > "${PASSWORDS_DIR}/keypass"
+echo -n "$KEYSTORE_PASS" > "${PASSWORDS_DIR}/.keypass"
 
 keytool -genkeypair -keystore "$keystore_path" -storetype "$KEYSTORE_TYPE" \
   -keypass "$KEYSTORE_PASS" -storepass "$KEYSTORE_PASS" \

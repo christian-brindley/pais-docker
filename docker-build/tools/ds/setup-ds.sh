@@ -22,8 +22,8 @@ APPLICATIONS_LDIF=$1
   --set "pais-config/idmRsClientSecret:password" \
   --profile am-cts \
   --set "am-cts/amCtsAdminPassword:password" \
-  --profile am-identity-store \
-  --set "am-identity-store/amIdentityStoreAdminPassword:password" \
+  --profile pais-identity-store \
+  --set "pais-identity-store/amIdentityStoreAdminPassword:password" \
   --profile idm-repo \
   --set idm-repo/domain:forgerock.io \
   --acceptLicense 

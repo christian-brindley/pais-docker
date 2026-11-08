@@ -130,6 +130,7 @@ RUN unzip -q  ${TMP_DIR}/*.zip -d  ${TMP_DIR}/unpack \
 
 COPY --chown=forgerock:root  tools/idm/authentication.json  ${IDM_INSTALL_DIR}/conf/authentication.json
 COPY --chown=forgerock:root  tools/idm/repo.ds.json  ${IDM_INSTALL_DIR}/conf/repo.ds.json
+COPY --chown=forgerock:root  tools/idm/managed.json  ${IDM_INSTALL_DIR}/conf/managed.json
 COPY --chown=forgerock:root  tools/idm/boot.properties  ${IDM_INSTALL_DIR}/resolver/boot.properties
 
 

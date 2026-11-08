@@ -45,107 +45,107 @@ ds-privilege-name: password-reset
 ds-privilege-name: proxied-auth
 ds-privilege-name: modify-acl
 
-dn: o=root,ou=people,&{AM_IDENTITY_STORE_BASE_DN}
-objectClass: organizationalunit
+dn: o=root,&{AM_IDENTITY_STORE_BASE_DN}
+objectClass: organization
 objectClass: top
 o: root
 
-dn: o=alpha,o=root,ou=people,&{AM_IDENTITY_STORE_BASE_DN}
-objectClass: organizationalunit
+dn: o=alpha,o=root,&{AM_IDENTITY_STORE_BASE_DN}
+objectClass: organization
 objectClass: top
 o: alpha
 
-dn: ou=assignment,o=alpha,o=root,ou=people,&{AM_IDENTITY_STORE_BASE_DN}
+dn: ou=assignment,o=alpha,o=root,&{AM_IDENTITY_STORE_BASE_DN}
 objectClass: organizationalunit
 objectClass: top
 ou: assignment
 
-dn: ou=organization,o=alpha,o=root,ou=people,&{AM_IDENTITY_STORE_BASE_DN}
+dn: ou=organization,o=alpha,o=root,&{AM_IDENTITY_STORE_BASE_DN}
 objectClass: organizationalunit
 objectClass: top
 ou: organization
 
-dn: ou=role,o=alpha,o=root,ou=people,&{AM_IDENTITY_STORE_BASE_DN}
+dn: ou=role,o=alpha,o=root,&{AM_IDENTITY_STORE_BASE_DN}
 objectClass: organizationalunit
 objectClass: top
 ou: role
 
-dn: ou=user,o=alpha,o=root,ou=people,&{AM_IDENTITY_STORE_BASE_DN}
+dn: ou=user,o=alpha,o=root,&{AM_IDENTITY_STORE_BASE_DN}
 objectClass: organizationalunit
 objectClass: top
 ou: user
 
-dn: ou=usermeta,o=alpha,o=root,ou=people,&{AM_IDENTITY_STORE_BASE_DN}
+dn: ou=usermeta,o=alpha,o=root,&{AM_IDENTITY_STORE_BASE_DN}
 objectClass: organizationalunit
 objectClass: top
 ou: usermeta
 
-dn: ou=application,o=alpha,o=root,ou=people,&{AM_IDENTITY_STORE_BASE_DN}
+dn: ou=application,o=alpha,o=root,&{AM_IDENTITY_STORE_BASE_DN}
 objectClass: organizationalunit
 objectClass: top
 ou: application
 
-dn: ou=groups,o=alpha,o=root,ou=people,&{AM_IDENTITY_STORE_BASE_DN}
+dn: ou=groups,o=alpha,o=root,&{AM_IDENTITY_STORE_BASE_DN}
 objectClass: organizationalunit
 objectClass: top
 ou: groups
 
-dn: ou=aiagents,o=alpha,o=root,ou=people,&{AM_IDENTITY_STORE_BASE_DN}
+dn: ou=aiagents,o=alpha,o=root,&{AM_IDENTITY_STORE_BASE_DN}
 objectClass: organizationalunit
 objectClass: top
 ou: aiagents
 
-dn: ou=aiagentprivilege,o=alpha,o=root,ou=people,&{AM_IDENTITY_STORE_BASE_DN}
+dn: ou=aiagentprivilege,o=alpha,o=root,&{AM_IDENTITY_STORE_BASE_DN}
 objectClass: organizationalunit
 objectClass: top
 ou: aiagentprivilege
 
-dn: o=bravo,o=root,ou=people,&{AM_IDENTITY_STORE_BASE_DN}
-objectClass: organizationalunit
+dn: o=bravo,o=root,&{AM_IDENTITY_STORE_BASE_DN}
+objectClass: organization
 objectClass: top
 o: bravo
 
-dn: ou=assignment,o=bravo,o=root,ou=people,&{AM_IDENTITY_STORE_BASE_DN}
+dn: ou=assignment,o=bravo,o=root,&{AM_IDENTITY_STORE_BASE_DN}
 objectClass: organizationalunit
 objectClass: top
 ou: assignment
 
-dn: ou=organization,o=bravo,o=root,ou=people,&{AM_IDENTITY_STORE_BASE_DN}
+dn: ou=organization,o=bravo,o=root,&{AM_IDENTITY_STORE_BASE_DN}
 objectClass: organizationalunit
 objectClass: top
 ou: organization
 
-dn: ou=role,o=bravo,o=root,ou=people,&{AM_IDENTITY_STORE_BASE_DN}
+dn: ou=role,o=bravo,o=root,&{AM_IDENTITY_STORE_BASE_DN}
 objectClass: organizationalunit
 objectClass: top
 ou: role
 
-dn: ou=user,o=bravo,o=root,ou=people,&{AM_IDENTITY_STORE_BASE_DN}
+dn: ou=user,o=bravo,o=root,&{AM_IDENTITY_STORE_BASE_DN}
 objectClass: organizationalunit
 objectClass: top
 ou: user
 
-dn: ou=usermeta,o=bravo,o=root,ou=people,&{AM_IDENTITY_STORE_BASE_DN}
+dn: ou=usermeta,o=bravo,o=root,&{AM_IDENTITY_STORE_BASE_DN}
 objectClass: organizationalunit
 objectClass: top
 ou: usermeta
 
-dn: ou=application,o=bravo,o=root,ou=people,&{AM_IDENTITY_STORE_BASE_DN}
+dn: ou=application,o=bravo,o=root,&{AM_IDENTITY_STORE_BASE_DN}
 objectClass: organizationalunit
 objectClass: top
 ou: application
 
-dn: ou=groups,o=bravo,o=root,ou=people,&{AM_IDENTITY_STORE_BASE_DN}
+dn: ou=groups,o=bravo,o=root,&{AM_IDENTITY_STORE_BASE_DN}
 objectClass: organizationalunit
 objectClass: top
 ou: groups
 
-dn: ou=aiagents,o=bravo,o=root,ou=people,&{AM_IDENTITY_STORE_BASE_DN}
+dn: ou=aiagents,o=bravo,o=root,&{AM_IDENTITY_STORE_BASE_DN}
 objectClass: organizationalunit
 objectClass: top
 ou: aiagents
 
-dn: ou=aiagentprivilege,o=bravo,o=root,ou=people,&{AM_IDENTITY_STORE_BASE_DN}
+dn: ou=aiagentprivilege,o=bravo,o=root,&{AM_IDENTITY_STORE_BASE_DN}
 objectClass: organizationalunit
 objectClass: top
 ou: aiagentprivilege

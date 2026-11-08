@@ -1,0 +1,614 @@
+#
+# Custom schema extension for the PAIS platform deployment.
+#
+# The IDM repository configuration (repo.ds.json) maps the generic
+# frIndexed*/frUnindexed* managed object properties onto the fr-attr-*
+# LDAP attributes grouped under the fr-ext-attrs auxiliary object class.
+# That schema ships with PingOne Advanced Identity Cloud's directory, but
+# is NOT part of a standalone Ping DS 8.1.2 installation, so it is defined
+# here. (In ForgeOps the equivalent file is docker/ds/config/schema/99-ext.ldif.)
+#
+# Also defines three fr-idm-* attributes used by the Agentic AI mappings
+# (fr-idm-agent-origin, fr-idm-agent-identity-reference, fr-idm-identity-type)
+# which are absent from the DS 8.1.2 idm-repo profile schema, plus an
+# auxiliary object class to carry them on agent entries.
+#
+dn: cn=schema
+objectClass: top
+objectClass: ldapSubentry
+objectClass: subschema
+cn: schema
+#
+# Generic indexed string attributes (frIndexedString1..20)
+#
+attributeTypes: ( fr-attr-istr1
+  NAME 'fr-attr-istr1'
+  DESC 'Generic indexed string attribute 1'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-istr2
+  NAME 'fr-attr-istr2'
+  DESC 'Generic indexed string attribute 2'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-istr3
+  NAME 'fr-attr-istr3'
+  DESC 'Generic indexed string attribute 3'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-istr4
+  NAME 'fr-attr-istr4'
+  DESC 'Generic indexed string attribute 4'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-istr5
+  NAME 'fr-attr-istr5'
+  DESC 'Generic indexed string attribute 5'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-istr6
+  NAME 'fr-attr-istr6'
+  DESC 'Generic indexed string attribute 6'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-istr7
+  NAME 'fr-attr-istr7'
+  DESC 'Generic indexed string attribute 7'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-istr8
+  NAME 'fr-attr-istr8'
+  DESC 'Generic indexed string attribute 8'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-istr9
+  NAME 'fr-attr-istr9'
+  DESC 'Generic indexed string attribute 9'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-istr10
+  NAME 'fr-attr-istr10'
+  DESC 'Generic indexed string attribute 10'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-istr11
+  NAME 'fr-attr-istr11'
+  DESC 'Generic indexed string attribute 11'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-istr12
+  NAME 'fr-attr-istr12'
+  DESC 'Generic indexed string attribute 12'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-istr13
+  NAME 'fr-attr-istr13'
+  DESC 'Generic indexed string attribute 13'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-istr14
+  NAME 'fr-attr-istr14'
+  DESC 'Generic indexed string attribute 14'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-istr15
+  NAME 'fr-attr-istr15'
+  DESC 'Generic indexed string attribute 15'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-istr16
+  NAME 'fr-attr-istr16'
+  DESC 'Generic indexed string attribute 16'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-istr17
+  NAME 'fr-attr-istr17'
+  DESC 'Generic indexed string attribute 17'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-istr18
+  NAME 'fr-attr-istr18'
+  DESC 'Generic indexed string attribute 18'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-istr19
+  NAME 'fr-attr-istr19'
+  DESC 'Generic indexed string attribute 19'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-istr20
+  NAME 'fr-attr-istr20'
+  DESC 'Generic indexed string attribute 20'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+#
+# Generic indexed multivalued string attributes (frIndexedMultivalued1..5)
+#
+attributeTypes: ( fr-attr-imulti1
+  NAME 'fr-attr-imulti1'
+  DESC 'Generic indexed multivalued string attribute 1'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-imulti2
+  NAME 'fr-attr-imulti2'
+  DESC 'Generic indexed multivalued string attribute 2'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-imulti3
+  NAME 'fr-attr-imulti3'
+  DESC 'Generic indexed multivalued string attribute 3'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-imulti4
+  NAME 'fr-attr-imulti4'
+  DESC 'Generic indexed multivalued string attribute 4'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-imulti5
+  NAME 'fr-attr-imulti5'
+  DESC 'Generic indexed multivalued string attribute 5'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  X-STABILITY 'Internal' )
+#
+# Generic indexed integer attributes (frIndexedInteger1..5)
+#
+attributeTypes: ( fr-attr-iint1
+  NAME 'fr-attr-iint1'
+  DESC 'Generic indexed integer attribute 1'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.27
+  EQUALITY integerMatch
+  ORDERING integerOrderingMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-iint2
+  NAME 'fr-attr-iint2'
+  DESC 'Generic indexed integer attribute 2'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.27
+  EQUALITY integerMatch
+  ORDERING integerOrderingMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-iint3
+  NAME 'fr-attr-iint3'
+  DESC 'Generic indexed integer attribute 3'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.27
+  EQUALITY integerMatch
+  ORDERING integerOrderingMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-iint4
+  NAME 'fr-attr-iint4'
+  DESC 'Generic indexed integer attribute 4'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.27
+  EQUALITY integerMatch
+  ORDERING integerOrderingMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-iint5
+  NAME 'fr-attr-iint5'
+  DESC 'Generic indexed integer attribute 5'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.27
+  EQUALITY integerMatch
+  ORDERING integerOrderingMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+#
+# Generic indexed date attributes (frIndexedDate1..5)
+#
+attributeTypes: ( fr-attr-idate1
+  NAME 'fr-attr-idate1'
+  DESC 'Generic indexed date attribute 1'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.24
+  EQUALITY generalizedTimeMatch
+  ORDERING generalizedTimeOrderingMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-idate2
+  NAME 'fr-attr-idate2'
+  DESC 'Generic indexed date attribute 2'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.24
+  EQUALITY generalizedTimeMatch
+  ORDERING generalizedTimeOrderingMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-idate3
+  NAME 'fr-attr-idate3'
+  DESC 'Generic indexed date attribute 3'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.24
+  EQUALITY generalizedTimeMatch
+  ORDERING generalizedTimeOrderingMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-idate4
+  NAME 'fr-attr-idate4'
+  DESC 'Generic indexed date attribute 4'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.24
+  EQUALITY generalizedTimeMatch
+  ORDERING generalizedTimeOrderingMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-idate5
+  NAME 'fr-attr-idate5'
+  DESC 'Generic indexed date attribute 5'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.24
+  EQUALITY generalizedTimeMatch
+  ORDERING generalizedTimeOrderingMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+#
+# Generic unindexed string attributes (frUnindexedString1..5)
+#
+attributeTypes: ( fr-attr-str1
+  NAME 'fr-attr-str1'
+  DESC 'Generic unindexed string attribute 1'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-str2
+  NAME 'fr-attr-str2'
+  DESC 'Generic unindexed string attribute 2'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-str3
+  NAME 'fr-attr-str3'
+  DESC 'Generic unindexed string attribute 3'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-str4
+  NAME 'fr-attr-str4'
+  DESC 'Generic unindexed string attribute 4'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-str5
+  NAME 'fr-attr-str5'
+  DESC 'Generic unindexed string attribute 5'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+#
+# Generic unindexed multivalued string attributes (frUnindexedMultivalued1..5)
+#
+attributeTypes: ( fr-attr-multi1
+  NAME 'fr-attr-multi1'
+  DESC 'Generic unindexed multivalued string attribute 1'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-multi2
+  NAME 'fr-attr-multi2'
+  DESC 'Generic unindexed multivalued string attribute 2'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-multi3
+  NAME 'fr-attr-multi3'
+  DESC 'Generic unindexed multivalued string attribute 3'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-multi4
+  NAME 'fr-attr-multi4'
+  DESC 'Generic unindexed multivalued string attribute 4'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-multi5
+  NAME 'fr-attr-multi5'
+  DESC 'Generic unindexed multivalued string attribute 5'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  ORDERING caseIgnoreOrderingMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  X-STABILITY 'Internal' )
+#
+# Generic unindexed integer attributes (frUnindexedInteger1..5)
+#
+attributeTypes: ( fr-attr-int1
+  NAME 'fr-attr-int1'
+  DESC 'Generic unindexed integer attribute 1'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.27
+  EQUALITY integerMatch
+  ORDERING integerOrderingMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-int2
+  NAME 'fr-attr-int2'
+  DESC 'Generic unindexed integer attribute 2'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.27
+  EQUALITY integerMatch
+  ORDERING integerOrderingMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-int3
+  NAME 'fr-attr-int3'
+  DESC 'Generic unindexed integer attribute 3'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.27
+  EQUALITY integerMatch
+  ORDERING integerOrderingMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-int4
+  NAME 'fr-attr-int4'
+  DESC 'Generic unindexed integer attribute 4'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.27
+  EQUALITY integerMatch
+  ORDERING integerOrderingMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-int5
+  NAME 'fr-attr-int5'
+  DESC 'Generic unindexed integer attribute 5'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.27
+  EQUALITY integerMatch
+  ORDERING integerOrderingMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+#
+# Generic unindexed date attributes (frUnindexedDate1..5)
+#
+attributeTypes: ( fr-attr-date1
+  NAME 'fr-attr-date1'
+  DESC 'Generic unindexed date attribute 1'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.24
+  EQUALITY generalizedTimeMatch
+  ORDERING generalizedTimeOrderingMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-date2
+  NAME 'fr-attr-date2'
+  DESC 'Generic unindexed date attribute 2'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.24
+  EQUALITY generalizedTimeMatch
+  ORDERING generalizedTimeOrderingMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-date3
+  NAME 'fr-attr-date3'
+  DESC 'Generic unindexed date attribute 3'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.24
+  EQUALITY generalizedTimeMatch
+  ORDERING generalizedTimeOrderingMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-date4
+  NAME 'fr-attr-date4'
+  DESC 'Generic unindexed date attribute 4'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.24
+  EQUALITY generalizedTimeMatch
+  ORDERING generalizedTimeOrderingMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-attr-date5
+  NAME 'fr-attr-date5'
+  DESC 'Generic unindexed date attribute 5'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.24
+  EQUALITY generalizedTimeMatch
+  ORDERING generalizedTimeOrderingMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+#
+# Identity type discriminator used by the managed user mappings
+# (user.identityType -> fr-idm-identity-type). Carried on fr-ext-attrs
+# because the shipped DS 8.1.2 schema has no definition for it.
+#
+attributeTypes: ( fr-idm-identity-type
+  NAME 'fr-idm-identity-type'
+  DESC 'Defines the type of identity an entry represents'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+#
+# Auxiliary object class carrying the generic fr-attr-* attributes.
+# fr-idm-identity-type is included here because the managed user mappings
+# already apply fr-ext-attrs and the shipped DS 8.1.2 schema has no
+# definition for this attribute.
+#
+objectClasses: ( fr-ext-attrs
+  NAME 'fr-ext-attrs'
+  DESC 'Generic extension attributes (frIndexed*/frUnindexed* mappings)'
+  SUP top
+  AUXILIARY
+  MAY ( fr-attr-istr1 $
+        fr-attr-istr2 $
+        fr-attr-istr3 $
+        fr-attr-istr4 $
+        fr-attr-istr5 $
+        fr-attr-istr6 $
+        fr-attr-istr7 $
+        fr-attr-istr8 $
+        fr-attr-istr9 $
+        fr-attr-istr10 $
+        fr-attr-istr11 $
+        fr-attr-istr12 $
+        fr-attr-istr13 $
+        fr-attr-istr14 $
+        fr-attr-istr15 $
+        fr-attr-istr16 $
+        fr-attr-istr17 $
+        fr-attr-istr18 $
+        fr-attr-istr19 $
+        fr-attr-istr20 $
+        fr-attr-imulti1 $
+        fr-attr-imulti2 $
+        fr-attr-imulti3 $
+        fr-attr-imulti4 $
+        fr-attr-imulti5 $
+        fr-attr-iint1 $
+        fr-attr-iint2 $
+        fr-attr-iint3 $
+        fr-attr-iint4 $
+        fr-attr-iint5 $
+        fr-attr-idate1 $
+        fr-attr-idate2 $
+        fr-attr-idate3 $
+        fr-attr-idate4 $
+        fr-attr-idate5 $
+        fr-attr-str1 $
+        fr-attr-str2 $
+        fr-attr-str3 $
+        fr-attr-str4 $
+        fr-attr-str5 $
+        fr-attr-multi1 $
+        fr-attr-multi2 $
+        fr-attr-multi3 $
+        fr-attr-multi4 $
+        fr-attr-multi5 $
+        fr-attr-int1 $
+        fr-attr-int2 $
+        fr-attr-int3 $
+        fr-attr-int4 $
+        fr-attr-int5 $
+        fr-attr-date1 $
+        fr-attr-date2 $
+        fr-attr-date3 $
+        fr-attr-date4 $
+        fr-attr-date5 $
+        fr-idm-identity-type )
+  X-STABILITY 'Internal' )
+#
+# Agentic AI attributes missing from the shipped DS 8.1.2 idm-repo schema
+#
+attributeTypes: ( fr-idm-agent-origin
+  NAME 'fr-idm-agent-origin'
+  DESC 'Origin of a non-human agent'
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  EQUALITY caseIgnoreMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+attributeTypes: ( fr-idm-agent-identity-reference
+  NAME 'fr-idm-agent-identity-reference'
+  DESC 'Identity associated with a non-human agent'
+  SYNTAX 1.3.6.1.4.1.36733.2.1.3.12
+  EQUALITY nameAndJsonCaseIgnoreJsonIdEqualityMatch
+  SINGLE-VALUE
+  X-STABILITY 'Internal' )
+objectClasses: ( fr-idm-agent-ext-obj
+  NAME 'fr-idm-agent-ext-obj'
+  DESC 'Extensions for Agentic AI object classes'
+  SUP top
+  AUXILIARY
+  MAY ( fr-idm-agent-origin $
+        fr-idm-agent-identity-reference )
+  X-STABILITY 'Internal' )

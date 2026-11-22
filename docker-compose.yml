@@ -27,3 +27,46 @@ services:
       CLIENT_SECRET_ID: "cGFzc3dvcmQ="
       JWT_ENCRYPTION_KEY: "wF+JJEI2PZtUsWGyO9+Weqhb/WzmNEFSYISD3BXmZR4="
       JWTSESSION_SYMMETRIC_SECRET_ID: "xYt3nAzdp3ML3c7bC9DoB3A0FLuWOJobFNqeWdNdWQqDEBWFcx8PToFusquhsb9phDPYq+Qx1vANT1quXgd/8g=="
+
+  loki:
+    container_name: loki
+    image: grafana/loki:3.5.0
+    command: -config.file=/etc/loki/loki-config.yml
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./logging/loki-config.yml:/etc/loki/loki-config.yml:ro
+      - loki-data:/loki
+    networks:
+      - logging
+
+  promtail:
+    container_name: promtail
+    image: grafana/promtail:3.4.0
+    volumes:
+      - ./logging/promtail-config.yml:/etc/promtail/config.yml:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - promtail-positions:/positions
+    networks:
+      - logging
+    depends_on:
+      - loki
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:11.5.2
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./logging/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
+      - grafana-data:/var/lib/grafana
+    networks:
+      - logging
+
+volumes:
+  loki-data:
+  promtail-positions:
+  grafana-data:
+
+networks:
+  logging:

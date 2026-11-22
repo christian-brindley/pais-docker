@@ -111,7 +111,10 @@ RUN mkdir -p ${TOMCAT_INSTALL_DIR}/webapps/am \
     && jar -xf ${TMP_DIR}/*.war \
     && rm -rf  ${TMP_DIR}/*
 
-COPY --chown=forgerock:root tools/am/setenv.sh ${TOMCAT_INSTALL_DIR}/bin/setenv.sh
+COPY --chown=forgerock:root tools/am/logback.xml ${TOMCAT_INSTALL_DIR}/webapps/am/WEB-INF/classes/logback.xml
+RUN chmod 755 ${TOMCAT_INSTALL_DIR}/bin/*
+
+COPY --chown=forgerock:root tools/tomcat/bin/setenv.sh ${TOMCAT_INSTALL_DIR}/bin/setenv.sh
 RUN chmod 755 ${TOMCAT_INSTALL_DIR}/bin/*
 
 COPY --chown=forgerock:root  tools/am/mkkeystore.sh ${TMP_DIR}/mkkeystore.sh
@@ -134,11 +137,6 @@ RUN unzip -q  ${TMP_DIR}/*.zip -d  ${TMP_DIR}/unpack \
     && mv  ${TMP_DIR}/unpack/* ${IDM_INSTALL_DIR}/ \
     && rm -rf  ${TMP_DIR}/*
 
-# COPY --chown=forgerock:root  tools/idm/authentication.json  ${IDM_INSTALL_DIR}/conf/authentication.json
-# COPY --chown=forgerock:root  tools/idm/repo.ds.json  ${IDM_INSTALL_DIR}/conf/repo.ds.json
-# COPY --chown=forgerock:root  tools/idm/managed.json  ${IDM_INSTALL_DIR}/conf/managed.json
-# COPY --chown=forgerock:root  tools/idm/logback.xml  ${IDM_INSTALL_DIR}/conf/logback.xml
-# COPY --chown=forgerock:root  tools/idm/boot.properties  ${IDM_INSTALL_DIR}/resolver/boot.properties
 COPY --chown=forgerock:root  tools/idm/conf  ${IDM_INSTALL_DIR}/conf
 COPY --chown=forgerock:root  tools/idm/resolver  ${IDM_INSTALL_DIR}/resolver
 

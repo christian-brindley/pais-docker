@@ -19,6 +19,7 @@ run_json() {
 }
 
 run_json /opt/ping/ds/bin/start-ds ds --noDetach &
-/opt/ping/tomcat/bin/startup.sh
+export CATALINA_OUT=/dev/stdout
+run_json /opt/ping/tomcat/bin/startup.sh tomcat &
 run_json /opt/ping/idm/startup.sh idm &
 run_json /opt/ping/gateway/bin/start.sh gateway /opt/ping/gateway

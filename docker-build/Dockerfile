@@ -12,7 +12,8 @@ RUN apt-get install -y \
   sudo \
   gettext-base \
   git \
-  rsync
+  rsync \
+  jq
 
 ENV BASE_INSTALL_DIR /opt/ping
 ENV TMP_DIR ${BASE_INSTALL_DIR}/tmp
@@ -20,6 +21,7 @@ ENV GATEWAY_INSTALL_DIR ${BASE_INSTALL_DIR}/gateway
 ENV DS_INSTALL_DIR ${BASE_INSTALL_DIR}/ds
 ENV PLATFORM_INSTALL_DIR ${BASE_INSTALL_DIR}/platform
 ENV UI_INSTALL_DIR ${BASE_INSTALL_DIR}/ui
+ENV LEGACY_IDM_UI_INSTALL_DIR ${BASE_INSTALL_DIR}/legacy-idm-ui
 ENV TOMCAT_INSTALL_DIR ${BASE_INSTALL_DIR}/tomcat
 ENV IDM_INSTALL_DIR ${BASE_INSTALL_DIR}/idm
 ENV AM_INSTALL_DIR ${BASE_INSTALL_DIR}/am
@@ -55,13 +57,17 @@ RUN CAROOT=${GATEWAY_INSTALL_DIR}/secrets/server-cert mkcert \
 COPY --chown=forgerock:root tools/gateway/gateway-config "${GATEWAY_INSTALL_DIR}/config"
 
 #
-# Platform UI
+# Legacy IDM UI
 #
 
-# COPY --chown=forgerock:root  dist/idm-ui ${TMP_DIR}
-# RUN unzip -q  ${TMP_DIR}/*.zip -d  ${TMP_DIR}/unpack \
-#     && mv  ${TMP_DIR}/unpack/* ${UI_INSTALL_DIR}/ \
-#     && rm -rf  ${TMP_DIR}/*
+COPY --chown=forgerock:root  dist/legacy-idm-ui ${TMP_DIR}
+RUN unzip -q  ${TMP_DIR}/*.zip -d  ${TMP_DIR}/unpack \
+    && mv  ${TMP_DIR}/unpack/* ${LEGACY_IDM_UI_INSTALL_DIR}/ \
+    && rm -rf  ${TMP_DIR}/*
+
+#
+# Platform UI
+#
 
 COPY --chown=forgerock:root  dist/ui ${TMP_DIR}
 RUN unzip -q  ${TMP_DIR}/*.zip -d  ${TMP_DIR}/unpack \
@@ -83,11 +89,11 @@ RUN unzip -q  ${TMP_DIR}/*.zip -d  ${TMP_DIR}/unpack \
     && rm -rf  ${TMP_DIR}/*
 
 COPY --chown=forgerock:root tools/ds/setup-profiles/PAIS ${DS_INSTALL_DIR}/template/setup-profiles/PAIS
+COPY --chown=forgerock:root tools/ds/config ${DS_INSTALL_DIR}/template/config
 
 COPY --chown=forgerock:root  tools/ds/setup-ds.sh ${TMP_DIR}/setup-ds.sh
-COPY --chown=forgerock:root  tools/ds/applications.ldif ${TMP_DIR}/applications.ldif
 RUN chmod 755 ${TMP_DIR}/setup-ds.sh \
-    && ${TMP_DIR}/setup-ds.sh ${TMP_DIR}/applications.ldif \
+    && ${TMP_DIR}/setup-ds.sh \
     && rm -rf  ${TMP_DIR}/*
 
 #
@@ -113,11 +119,11 @@ RUN chmod 755 ${TMP_DIR}/mkkeystore.sh \
     && ${TMP_DIR}/mkkeystore.sh \
     && rm -rf  ${TMP_DIR}/*
 
-COPY --chown=forgerock:root  tools/am/am-config.zip  ${TMP_DIR}
-RUN mkdir -p ${AM_INSTALL_DIR} \
-    && cd ${AM_INSTALL_DIR}  \
-    && unzip  ${TMP_DIR}/am-config.zip \
-    && rm -rf  ${TMP_DIR}/*
+# COPY --chown=forgerock:root  tools/am/am-config.zip  ${TMP_DIR}
+# RUN mkdir -p ${AM_INSTALL_DIR} \
+#     && cd ${AM_INSTALL_DIR}  \
+#     && unzip  ${TMP_DIR}/am-config.zip \
+#     && rm -rf  ${TMP_DIR}/*
 
 #
 # Ping IDM
@@ -131,6 +137,7 @@ RUN unzip -q  ${TMP_DIR}/*.zip -d  ${TMP_DIR}/unpack \
 COPY --chown=forgerock:root  tools/idm/authentication.json  ${IDM_INSTALL_DIR}/conf/authentication.json
 COPY --chown=forgerock:root  tools/idm/repo.ds.json  ${IDM_INSTALL_DIR}/conf/repo.ds.json
 COPY --chown=forgerock:root  tools/idm/managed.json  ${IDM_INSTALL_DIR}/conf/managed.json
+COPY --chown=forgerock:root  tools/idm/logback.xml  ${IDM_INSTALL_DIR}/conf/logback.xml
 COPY --chown=forgerock:root  tools/idm/boot.properties  ${IDM_INSTALL_DIR}/resolver/boot.properties
 
 

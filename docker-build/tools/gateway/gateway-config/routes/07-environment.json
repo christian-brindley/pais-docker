@@ -1,0 +1,14 @@
+{
+  "name": "07-environment",
+  "condition": "${matchesWithRegex(request.uri.path, '^/custom-domains/alpha$')}",
+  "handler": {
+    "type": "StaticResponseHandler",
+    "config": {
+      "status": 200,
+      "headers": {
+        "Content-Type": ["application/json"]
+      },
+      "entity": "{\"domains\":[\"iam.idhub.cc\"]}"
+    }
+  }
+}

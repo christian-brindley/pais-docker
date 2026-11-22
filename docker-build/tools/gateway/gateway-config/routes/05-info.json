@@ -1,0 +1,14 @@
+{
+  "name": "05-info",
+  "condition": "${matchesWithRegex(request.uri.path, '^/info$')}",
+  "handler": {
+    "type": "StaticResponseHandler",
+    "config": {
+      "status": 200,
+      "headers": {
+        "Content-Type": ["application/json"]
+      },
+      "entity": "{\"backupRegion\":\"europe-west9\",\"config_promotion_done\":false,\"immutable\":false,\"ipAddresses\":[\"35.242.137.96\"],\"locked\":false,\"message_box_html\":\"\",\"message_box_title\":\"\",\"message_variant\":\"\",\"placeholder_management_migration_date\":\"\",\"placeholder_management\":\"CUSTOMER\",\"promotionTierInfo\":{\"tierDisplayName\":\"other\",\"tiers\":[\"other\"],\"upperTierDisplayName\":null,\"lowerTierDisplayName\":null},\"region\":\"europe-west2\",\"tier\":\"other\",\"warning_message_html\":\"\"}"
+    }
+  }
+}

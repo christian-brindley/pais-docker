@@ -14,43 +14,15 @@
   Copyright 2016 ForgeRock AS.
   -->
 <configuration>
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%nopex[%thread] %highlight(%-5level) %boldWhite(%logger{35}) -
-                %message%n%highlight(%rootException{short})
-            </pattern>
-        </encoder>
-    </appender>
-     
-    <appender name="SIFT" class="ch.qos.logback.classic.sift.SiftingAppender">
-        <discriminator>
-            <key>routeId</key>
-            <defaultValue>system</defaultValue>
-        </discriminator>
-        <sift>
-            <!-- Create a separate log file for each <key> -->
-            <appender name="FILE-${routeId}" class="ch.qos.logback.core.rolling.RollingFileAppender">
-                <file>${openig.base}/logs/route-${routeId}.log</file>
-                 
-                <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-                    <!-- Rotate files daily -->
-                    <fileNamePattern>${openig.base}/logs/route-${routeId}-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-                     
-                    <!-- each file should be at most 100MB, keep 30 days worth of history, but at most 3GB -->
-                    <maxFileSize>100MB</maxFileSize>
-                    <maxHistory>30</maxHistory>
-                    <totalSizeCap>3GB</totalSizeCap>
-                </rollingPolicy>
-                 
-                <encoder>
-                    <pattern>%d{HH:mm:ss:SSS} | %-5level | %thread | %logger{20} | %message%n%xException</pattern>
-                </encoder>
-            </appender>
-        </sift>
-    </appender>
-     
-    <root level="FINE">
-        <appender-ref ref="STDOUT"/>
-    </root>
+  <appender name="STDOUT_JSON"
+            class="ch.qos.logback.core.ConsoleAppender">
+    <encoder class="ch.qos.logback.classic.encoder.JsonEncoder"/>
+  </appender>
+
+  <root level="DEBUG">
+    <appender-ref ref="STDOUT_JSON"/>
+  </root>
 </configuration>
+
+
 

@@ -1,0 +1,14 @@
+{
+  "name": "06-release",
+  "condition": "${matchesWithRegex(request.uri.path, '^/release$')}",
+  "handler": {
+    "type": "StaticResponseHandler",
+    "config": {
+      "status": 200,
+      "headers": {
+        "Content-Type": ["application/json"]
+      },
+      "entity": "{\"currentVersion\":\"unknown\"}"
+    }
+  }
+}

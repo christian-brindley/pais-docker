@@ -4,7 +4,7 @@
   "handler": {
     "type": "ResourceHandler",
     "config": {
-      "directories": ["/opt/ping/idm-ui/www/platform"],
+      "directories": ["/opt/ping/legacy-idm-ui/www/admin"],
       "basePath": "/admin",
       "welcomePages": ["index.html"]
     }

@@ -155,6 +155,17 @@ sunKeyValue: com.forgerock.openam.oauth2provider.useCertificateBoundAccessTokens
 sunKeyValue: com.forgerock.openam.oauth2provider.publicKeyLocation=jwks_uri
 sunKeyValue: com.forgerock.openam.oauth2provider.scopes=[0]=fr:idm:*
 sunKeyValue: com.forgerock.openam.oauth2provider.scopes=[1]=openid
+sunKeyValue: com.forgerock.openam.oauth2provider.scopes=[2]=fr:idc:federation:* 
+sunKeyValue: com.forgerock.openam.oauth2provider.scopes=[3]=fr:idc:custom-domain:*
+sunKeyValue: com.forgerock.openam.oauth2provider.scopes=[4]=fr:idc:certificate:*
+sunKeyValue: com.forgerock.openam.oauth2provider.scopes=[5]=fr:idc:esv:*
+sunKeyValue: com.forgerock.openam.oauth2provider.scopes=[6]=fr:idc:sso-cookie:*
+sunKeyValue: com.forgerock.openam.oauth2provider.scopes=[7]=fr:idc:proxy-connect:*
+sunKeyValue: com.forgerock.openam.oauth2provider.scopes=[8]=fr:idc:mtls:*
+sunKeyValue: com.forgerock.openam.oauth2provider.scopes=[9]=fr:idc:cookie-domain:*
+sunKeyValue: com.forgerock.openam.oauth2provider.scopes=[10]=fr:idc:release:*
+sunKeyValue: com.forgerock.openam.oauth2provider.scopes=[11]=fr:idc:content-security-policy:*
+sunKeyValue: com.forgerock.openam.oauth2provider.scopes=[12]=fr:idc:monitoring:*
 sunKeyValue: com.forgerock.openam.oauth2provider.tokenintrospection.responseFormat=JSON
 sunKeyValue: acceptedJwtIssuers=
 sunKeyValue: accessTokenMayActScript=[Empty]

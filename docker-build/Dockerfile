@@ -119,11 +119,11 @@ RUN chmod 755 ${TMP_DIR}/mkkeystore.sh \
     && ${TMP_DIR}/mkkeystore.sh \
     && rm -rf  ${TMP_DIR}/*
 
-# COPY --chown=forgerock:root  tools/am/am-config.zip  ${TMP_DIR}
-# RUN mkdir -p ${AM_INSTALL_DIR} \
-#     && cd ${AM_INSTALL_DIR}  \
-#     && unzip  ${TMP_DIR}/am-config.zip \
-#     && rm -rf  ${TMP_DIR}/*
+COPY --chown=forgerock:root  tools/am/am-config.zip  ${TMP_DIR}
+RUN mkdir -p ${AM_INSTALL_DIR} \
+    && cd ${AM_INSTALL_DIR}  \
+    && unzip  ${TMP_DIR}/am-config.zip \
+    && rm -rf  ${TMP_DIR}/*
 
 #
 # Ping IDM
@@ -134,11 +134,13 @@ RUN unzip -q  ${TMP_DIR}/*.zip -d  ${TMP_DIR}/unpack \
     && mv  ${TMP_DIR}/unpack/* ${IDM_INSTALL_DIR}/ \
     && rm -rf  ${TMP_DIR}/*
 
-COPY --chown=forgerock:root  tools/idm/authentication.json  ${IDM_INSTALL_DIR}/conf/authentication.json
-COPY --chown=forgerock:root  tools/idm/repo.ds.json  ${IDM_INSTALL_DIR}/conf/repo.ds.json
-COPY --chown=forgerock:root  tools/idm/managed.json  ${IDM_INSTALL_DIR}/conf/managed.json
-COPY --chown=forgerock:root  tools/idm/logback.xml  ${IDM_INSTALL_DIR}/conf/logback.xml
-COPY --chown=forgerock:root  tools/idm/boot.properties  ${IDM_INSTALL_DIR}/resolver/boot.properties
+# COPY --chown=forgerock:root  tools/idm/authentication.json  ${IDM_INSTALL_DIR}/conf/authentication.json
+# COPY --chown=forgerock:root  tools/idm/repo.ds.json  ${IDM_INSTALL_DIR}/conf/repo.ds.json
+# COPY --chown=forgerock:root  tools/idm/managed.json  ${IDM_INSTALL_DIR}/conf/managed.json
+# COPY --chown=forgerock:root  tools/idm/logback.xml  ${IDM_INSTALL_DIR}/conf/logback.xml
+# COPY --chown=forgerock:root  tools/idm/boot.properties  ${IDM_INSTALL_DIR}/resolver/boot.properties
+COPY --chown=forgerock:root  tools/idm/conf  ${IDM_INSTALL_DIR}/conf
+COPY --chown=forgerock:root  tools/idm/resolver  ${IDM_INSTALL_DIR}/resolver
 
 
 ENTRYPOINT ["/bin/sh", "-c", "${PLATFORM_INSTALL_DIR}/bin/docker-entrypoint.sh"]

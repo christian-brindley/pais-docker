@@ -27,6 +27,8 @@ export ENABLE_GOVERNANCE=false      # only honored when FRAAS=true; flip to demo
 # AIC lands admins in the alpha realm
 export FRAAS_DEFAULT_REALM=alpha
 
+export FRAAS_ADMIN_MANAGED_OBJECT_NAME="internal/user"
+
 export ENDUSER_CLIENT_ID=end-user-ui
 export ADMIN_CLIENT_ID=idm-admin-ui
 export THEME=default

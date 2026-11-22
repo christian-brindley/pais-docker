@@ -17,7 +17,7 @@ services:
       AGENT_SECRET: "password"
       SOFTHSM_PIN: "password"
       IG_OPTS: "-Dig.pid.file.mode=override"
-      IAM_FQDN: "go.idhub.cc"
+      IAM_FQDN: "pais.local"
       IAM_REALM: "alpha"
       KEYSTORE_PASSWORD: "password"
       IG_CLIENT_ID: "ig-client"

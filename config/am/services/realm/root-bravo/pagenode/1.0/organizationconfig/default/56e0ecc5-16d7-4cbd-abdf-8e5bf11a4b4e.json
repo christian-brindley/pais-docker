@@ -1,0 +1,12 @@
+{
+  "realm" : "/bravo",
+  "entityType" : "PageNode",
+  "entityId" : "default/56e0ecc5-16d7-4cbd-abdf-8e5bf11a4b4e",
+  "serviceComponent" : "instance",
+  "data" : {
+    "nodes" : [ "6c40132d-c3a5-492e-86b6-23f7978c8d47:UsernameCollectorNode:1:User Name Collector", "5494a939-cb47-44c2-b667-d6db0a9f2d55:PasswordCollectorNode:1:Password Collector" ],
+    "stage" : null,
+    "pageDescription" : { },
+    "pageHeader" : { }
+  }
+}

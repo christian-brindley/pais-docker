@@ -1,0 +1,10 @@
+{
+  "realm" : null,
+  "entityType" : "KeyStoreSecretStore",
+  "entityId" : "default/main/mappings/am.services.oauth2.oidc.signing.RSA",
+  "serviceComponent" : "instance",
+  "data" : {
+    "secretId" : "am.services.oauth2.oidc.signing.RSA",
+    "aliases" : [ "rsajwtsigningkey" ]
+  }
+}

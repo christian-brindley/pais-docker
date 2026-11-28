@@ -1,0 +1,9 @@
+{
+  "realm" : null,
+  "entityType" : "amPluginService",
+  "entityId" : "default/plugins/org.forgerock.openam.integration.pingone.nodes.plugin.PingOneIntegrationNodesPlugin",
+  "serviceComponent" : "plugin",
+  "data" : {
+    "version" : "13.0.0"
+  }
+}

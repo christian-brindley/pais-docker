@@ -1,0 +1,34 @@
+{
+  "realm" : "/alpha",
+  "entityType" : "authenticationTreesService",
+  "entityId" : "default/amsterService",
+  "serviceComponent" : "tree",
+  "data" : {
+    "identityResource" : null,
+    "innerTreeOnly" : false,
+    "entryNodeId" : "cfcd2084-95d5-35ef-a6e7-d7f9f98764db",
+    "maximumSessionTime" : null,
+    "maximumIdleTime" : null,
+    "description" : null,
+    "noSession" : false,
+    "mustRun" : false,
+    "treeTimeout" : null,
+    "enabled" : true,
+    "transactionalOnly" : false,
+    "uiConfig" : { },
+    "nodes" : {
+      "cfcd2084-95d5-35ef-a6e7-d7f9f98764db" : {
+        "nodeType" : "AmsterJwtDecisionNode",
+        "displayName" : "Amster Jwt Decision Node",
+        "version" : 1,
+        "connections" : {
+          "true" : "70e691a5-1e33-4ac3-a356-e7b6d60d92e0",
+          "false" : "e301438c-0bd0-429c-ab0c-66126501069a"
+        },
+        "x" : 0.0,
+        "y" : 0.0
+      }
+    },
+    "staticNodes" : { }
+  }
+}

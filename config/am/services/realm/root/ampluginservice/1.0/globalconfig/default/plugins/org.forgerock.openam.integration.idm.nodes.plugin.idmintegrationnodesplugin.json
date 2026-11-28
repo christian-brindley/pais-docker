@@ -1,0 +1,9 @@
+{
+  "realm" : null,
+  "entityType" : "amPluginService",
+  "entityId" : "default/plugins/org.forgerock.openam.integration.idm.nodes.plugin.IdmIntegrationNodesPlugin",
+  "serviceComponent" : "plugin",
+  "data" : {
+    "version" : "8.0.0"
+  }
+}

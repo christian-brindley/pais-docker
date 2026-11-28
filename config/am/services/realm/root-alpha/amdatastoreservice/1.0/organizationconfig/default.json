@@ -1,0 +1,10 @@
+{
+  "realm" : "/alpha",
+  "entityType" : "amDataStoreService",
+  "entityId" : "default",
+  "serviceComponent" : null,
+  "data" : {
+    "applicationDataStoreId" : "application-store",
+    "policyDataStoreId" : "policy-store"
+  }
+}

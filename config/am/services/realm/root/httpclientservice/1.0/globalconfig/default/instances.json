@@ -1,0 +1,7 @@
+{
+  "realm" : null,
+  "entityType" : "HttpClientService",
+  "entityId" : "default/instances",
+  "serviceComponent" : "instances",
+  "data" : { }
+}

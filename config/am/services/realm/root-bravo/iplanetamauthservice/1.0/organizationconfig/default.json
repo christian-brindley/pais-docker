@@ -1,0 +1,18 @@
+{
+  "realm" : "/bravo",
+  "entityType" : "iPlanetAMAuthService",
+  "entityId" : "default",
+  "serviceComponent" : null,
+  "data" : {
+    "userprofile" : {
+      "aliasAttributeName" : [ "uid" ]
+    },
+    "general" : {
+      "statelessSessionsEnabled" : false
+    },
+    "core" : {
+      "adminAuthModule" : "ldapService",
+      "orgConfig" : "ldapService"
+    }
+  }
+}

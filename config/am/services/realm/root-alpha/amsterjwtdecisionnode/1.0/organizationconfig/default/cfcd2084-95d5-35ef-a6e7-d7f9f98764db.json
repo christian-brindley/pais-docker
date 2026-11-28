@@ -1,0 +1,9 @@
+{
+  "realm" : "/alpha",
+  "entityType" : "AmsterJwtDecisionNode",
+  "entityId" : "default/cfcd2084-95d5-35ef-a6e7-d7f9f98764db",
+  "serviceComponent" : "instance",
+  "data" : {
+    "authorizedKeys" : "/opt/ping/am/security/keys/amster/authorized_keys"
+  }
+}

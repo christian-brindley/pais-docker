@@ -1,0 +1,17 @@
+{
+  "realm" : "/bravo",
+  "entityType" : "iPlanetAMPolicyConfigService",
+  "entityId" : "default",
+  "serviceComponent" : null,
+  "data" : {
+    "bindDn" : {
+      "$string" : "&{am.stores.policy.username|uid=am-config,ou=admins,ou=am-config}"
+    },
+    "bindPassword" : {
+      "$string" : "&{am.stores.policy.password|&{am.stores.application.password}}"
+    },
+    "sslEnabled" : {
+      "$bool" : "&{am.stores.policy.ssl.enabled|&{am.stores.application.ssl.enabled|true}}"
+    }
+  }
+}

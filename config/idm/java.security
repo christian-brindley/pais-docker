@@ -1,0 +1,18 @@
+#
+# Copyright 2018-2025 Ping Identity Corporation. All Rights Reserved
+#
+# This code is to be used exclusively in connection with Ping Identity
+# Corporation software or services. Ping Identity Corporation only offers
+# such software or services to legal entities who have entered into a
+# binding license agreement with Ping Identity Corporation.
+#
+
+# Use this file to extend the properties defined in the JDK java.security file.
+
+# This is an example of how to add a PKCS11 (HSM) provider for JDK8. It is important to make sure the provider number is
+# not already taken.
+# security.provider.11=sun.security.pkcs11.SunPKCS11 /path/to/pkc11/config/pkcs11.conf
+
+# This is an example of how to add a PKCS11 (HSM) provider for JDK9+. It is important to make sure the provider number is
+# not already taken.
+# security.provider.14=SunPKCS11 /path/to/pkc11/config/pkcs11.conf

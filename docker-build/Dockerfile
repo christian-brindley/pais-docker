@@ -122,11 +122,13 @@ RUN chmod 755 ${TMP_DIR}/mkkeystore.sh \
     && ${TMP_DIR}/mkkeystore.sh \
     && rm -rf  ${TMP_DIR}/*
 
-COPY --chown=forgerock:root  tools/am/am-config.zip  ${TMP_DIR}
-RUN mkdir -p ${AM_INSTALL_DIR} \
-    && cd ${AM_INSTALL_DIR}  \
-    && unzip  ${TMP_DIR}/am-config.zip \
-    && rm -rf  ${TMP_DIR}/*
+# COPY --chown=forgerock:root  tools/am/am-config.zip  ${TMP_DIR}
+# RUN mkdir -p ${AM_INSTALL_DIR} \
+#     && cd ${AM_INSTALL_DIR}  \
+#     && unzip  ${TMP_DIR}/am-config.zip \
+#     && rm -rf  ${TMP_DIR}/*
+
+RUN mkdir -p ${AM_INSTALL_DIR}/config
 
 #
 # Ping IDM

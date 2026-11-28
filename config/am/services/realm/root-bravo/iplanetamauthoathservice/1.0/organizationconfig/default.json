@@ -1,0 +1,9 @@
+{
+  "realm" : "/bravo",
+  "entityType" : "iPlanetAMAuthOATHService",
+  "entityId" : "default",
+  "serviceComponent" : null,
+  "data" : {
+    "authenticationLevel" : 0
+  }
+}

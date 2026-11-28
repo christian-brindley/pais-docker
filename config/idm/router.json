@@ -1,0 +1,39 @@
+{
+    "filters" : [
+        {
+            "name" : "policy-object",
+            "pattern" : "^(managed|internal)($|(/.+))",
+            "onRequest" : {
+                "type" : "text/javascript",
+                "file" : "policyFilter.js"
+            },
+            "methods" : [
+                "create",
+                "update"
+            ]
+        },
+        {
+            "name" : "policy-config-managed",
+            "pattern" : "^config/managed$",
+            "onRequest" : {
+                "type" : "text/javascript",
+                "file" : "policyFilter.js"
+            },
+            "methods" : [
+                "update"
+            ]
+        },
+        {
+            "name" : "relationship",
+            "pattern" : "^(managed|internal)($|(/.+))",
+            "condition" : {
+                "type" : "text/javascript",
+                "source" : "(context.caller.external === true) && (typeof context.privilege === 'undefined' || Object.keys(context.privilege.matchingPrivileges).length === 0)"
+            },
+            "onResponse" : {
+                "type" : "text/javascript",
+                "source" : "require('relationshipFilter').filterResponse()"
+            }
+        }
+    ]
+}

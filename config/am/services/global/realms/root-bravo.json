@@ -1,0 +1,12 @@
+{
+  "realm" : "/bravo",
+  "entityType" : "",
+  "entityId" : "L2JyYXZv",
+  "serviceComponent" : null,
+  "data" : {
+    "parentPath" : "/",
+    "active" : true,
+    "name" : "bravo",
+    "aliases" : [ "" ]
+  }
+}

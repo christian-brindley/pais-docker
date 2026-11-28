@@ -1,0 +1,10 @@
+{
+  "realm" : "/alpha",
+  "entityType" : "sunIdentityRepositoryService",
+  "entityId" : "default",
+  "serviceComponent" : null,
+  "data" : {
+    "sunIdRepoAttributeCombiner" : "com.iplanet.am.sdk.AttributeCombiner",
+    "sunIdRepoAttributeValidator" : [ "usernameInvalidChars=*|(|)|&|!|{|}|;", "class=com.sun.identity.idm.server.IdRepoAttributeValidatorImpl", "minimumPasswordLength=8" ]
+  }
+}

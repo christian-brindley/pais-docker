@@ -1,0 +1,7 @@
+{
+  "realm" : null,
+  "entityType" : "AuditService",
+  "entityId" : "default/JSON_STDOUT",
+  "serviceComponent" : "JSONStdout",
+  "data" : { }
+}

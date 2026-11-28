@@ -1,0 +1,5 @@
+{
+    "enabled" : {
+        "$bool" : "&{openidm.metrics.enabled|false}"
+    }
+}

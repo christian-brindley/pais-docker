@@ -1,0 +1,7 @@
+{
+  "realm" : "/alpha",
+  "entityType" : "ScriptingService",
+  "entityId" : "default/scriptConfigurations",
+  "serviceComponent" : "scriptConfigurations",
+  "data" : { }
+}

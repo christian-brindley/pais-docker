@@ -1,0 +1,12 @@
+{
+  "realm" : "/alpha",
+  "entityType" : "",
+  "entityId" : "L2FscGhh",
+  "serviceComponent" : null,
+  "data" : {
+    "parentPath" : "/",
+    "active" : true,
+    "name" : "alpha",
+    "aliases" : [ "" ]
+  }
+}

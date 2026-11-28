@@ -1,0 +1,12 @@
+{
+  "realm" : "/bravo",
+  "entityType" : "ZeroPageLoginNode",
+  "entityId" : "default/eccbc87e-4b5c-32fe-a830-8fd9f2a7baf5",
+  "serviceComponent" : "instance",
+  "data" : {
+    "passwordHeader" : "X-OpenAM-Password",
+    "referrerWhiteList" : [ ],
+    "allowWithoutReferer" : true,
+    "usernameHeader" : "X-OpenAM-Username"
+  }
+}

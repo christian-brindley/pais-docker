@@ -1,0 +1,14 @@
+{
+  "realm" : "/",
+  "entityType" : "",
+  "entityId" : "Lw",
+  "serviceComponent" : null,
+  "data" : {
+    "parentPath" : "",
+    "active" : true,
+    "name" : "/",
+    "aliases" : {
+      "$list" : "&{am.server.hostnames|&{am.server.fqdn},am,am-config}"
+    }
+  }
+}

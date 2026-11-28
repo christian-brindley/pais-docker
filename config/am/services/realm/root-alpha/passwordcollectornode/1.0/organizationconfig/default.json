@@ -1,0 +1,7 @@
+{
+  "realm" : "/alpha",
+  "entityType" : "PasswordCollectorNode",
+  "entityId" : "default",
+  "serviceComponent" : null,
+  "data" : { }
+}

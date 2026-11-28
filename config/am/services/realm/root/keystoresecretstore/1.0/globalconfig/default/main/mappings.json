@@ -1,0 +1,7 @@
+{
+  "realm" : null,
+  "entityType" : "KeyStoreSecretStore",
+  "entityId" : "default/main/mappings",
+  "serviceComponent" : "mappings",
+  "data" : { }
+}

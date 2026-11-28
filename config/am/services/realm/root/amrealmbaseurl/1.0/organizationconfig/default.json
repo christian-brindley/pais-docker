@@ -1,0 +1,12 @@
+{
+  "realm" : "/",
+  "entityType" : "amRealmBaseURL",
+  "entityId" : "default",
+  "serviceComponent" : null,
+  "data" : {
+    "source" : "X_FORWARDED_HEADERS",
+    "extensionClassName" : null,
+    "fixedValue" : "https://pais.local",
+    "contextPath" : "/am"
+  }
+}

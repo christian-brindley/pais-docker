@@ -318,7 +318,7 @@ sunKeyValue: com.forgerock.openam.oauth2provider.tokenintrospection.signedRespon
 sunKeyValue: com.forgerock.openam.oauth2provider.userinfo.encryptedResponseEnc=A128CBC-HS256
 sunKeyValue: com.forgerock.openam.oauth2provider.postLogoutRedirectURI=
 sunKeyValue: backchannel_logout_session_required=false
-sunKeyValue: userpassword=AQICYNQ0UPmSLNA7n4G4Ukwm5pOMAqk4QJqm
+sunKeyValue: userpassword=AQICv6c3Z1VfvgAvI8Q+ZY/V757QNs08EeJ3
 sunserviceID: OAuth2Client
 sunsmspriority: 0
 sunxmlKeyValue: javascriptOrigins=

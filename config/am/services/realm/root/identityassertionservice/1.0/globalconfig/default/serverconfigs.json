@@ -1,0 +1,7 @@
+{
+  "realm" : null,
+  "entityType" : "IdentityAssertionService",
+  "entityId" : "default/serverConfigs",
+  "serviceComponent" : "serverConfigs",
+  "data" : { }
+}

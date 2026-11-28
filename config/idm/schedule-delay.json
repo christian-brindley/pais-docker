@@ -1,0 +1,23 @@
+{
+    "concurrentExecution" : false,
+    "enabled" : true,
+    "endTime" : null,
+    "invokeLogLevel" : "info",
+    "isCron" : true,
+    "misfirePolicy" : "fireAndProceed",
+    "persisted" : true,
+    "recoverable" : false,
+    "repeatCount" : 0,
+    "repeatInterval" : 0,
+    "schedule" : "*/10 * * * * ?",
+    "startTime" : null,
+    "type" : "cron",
+    "invokeContext" : {
+        "script" : {
+            "type" : "text/javascript",
+            "globals" : { },
+            "source" : "logger.error(\"TASKDELAY starting\");\nvar params = {\n    url: \"https://postman-echo.com/delay/20\",\n    method: \"GET\"\n};\n\nvar response = openidm.action(\"external/rest\", \"call\", params);\nlogger.error(\"TASKDELAY ending\");"
+        }
+    },
+    "invokeService" : "script"
+}

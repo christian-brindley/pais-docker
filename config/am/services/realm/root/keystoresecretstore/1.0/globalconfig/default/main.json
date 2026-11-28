@@ -1,0 +1,14 @@
+{
+  "realm" : null,
+  "entityType" : "KeyStoreSecretStore",
+  "entityId" : "default/main",
+  "serviceComponent" : "instance",
+  "data" : {
+    "storePassword" : "storepass",
+    "providerName" : null,
+    "file" : "/opt/ping/platform/security/keystores/keystore.jceks",
+    "leaseExpiryDuration" : 5,
+    "keyEntryPassword" : "keypass",
+    "storetype" : "JCEKS"
+  }
+}

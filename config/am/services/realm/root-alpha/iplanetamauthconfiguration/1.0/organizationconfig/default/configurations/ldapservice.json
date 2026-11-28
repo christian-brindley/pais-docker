@@ -1,0 +1,9 @@
+{
+  "realm" : "/alpha",
+  "entityType" : "iPlanetAMAuthConfiguration",
+  "entityId" : "default/Configurations/ldapService",
+  "serviceComponent" : "NamedConfiguration",
+  "data" : {
+    "authChainConfiguration" : "<AttributeValuePair><Value>DataStore REQUIRED </Value></AttributeValuePair>"
+  }
+}

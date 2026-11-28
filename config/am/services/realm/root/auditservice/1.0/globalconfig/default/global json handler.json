@@ -1,0 +1,36 @@
+{
+  "realm" : null,
+  "entityType" : "AuditService",
+  "entityId" : "default/Global JSON Handler",
+  "serviceComponent" : "JSON",
+  "data" : {
+    "jsonFileRotation" : {
+      "rotationTimes" : [ ],
+      "rotationFileSuffix" : "-yyyy.MM.dd-HH.mm.ss",
+      "rotationMaxFileSize" : "100000000",
+      "rotationInterval" : "-1",
+      "rotationEnabled" : true
+    },
+    "jsonFileRetention" : {
+      "retentionMaxDiskSpaceToUse" : "-1",
+      "retentionMaxNumberOfHistoryFiles" : "1",
+      "retentionMinFreeSpaceRequired" : "-1"
+    },
+    "jsonConfig" : {
+      "rotationRetentionCheckInterval" : "5",
+      "location" : "%BASE_DIR%/var/audit/",
+      "elasticsearchCompatible" : false
+    },
+    "jsonBuffering" : {
+      "bufferingMaxSize" : "100000",
+      "bufferingWriteInterval" : "5"
+    },
+    "commonHandler" : {
+      "enabled" : false,
+      "topics" : [ "access", "activity", "config", "authentication" ]
+    },
+    "commonHandlerPlugin" : {
+      "handlerFactory" : "org.forgerock.openam.audit.events.handlers.JsonAuditEventHandlerFactory"
+    }
+  }
+}

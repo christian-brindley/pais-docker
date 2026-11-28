@@ -1,0 +1,7 @@
+{
+  "realm" : "/bravo",
+  "entityType" : "ScriptingService",
+  "entityId" : "default/scriptConfigurations",
+  "serviceComponent" : "scriptConfigurations",
+  "data" : { }
+}

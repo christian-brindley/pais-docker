@@ -1,0 +1,7 @@
+{
+  "realm" : "/bravo",
+  "entityType" : "AgentDataStoreDecisionNode",
+  "entityId" : "default",
+  "serviceComponent" : null,
+  "data" : { }
+}

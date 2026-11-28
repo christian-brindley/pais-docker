@@ -1,0 +1,9 @@
+{
+  "realm" : "/alpha",
+  "entityType" : "sunAMAuthHOTPService",
+  "entityId" : "default",
+  "serviceComponent" : null,
+  "data" : {
+    "authenticationLevel" : 0
+  }
+}

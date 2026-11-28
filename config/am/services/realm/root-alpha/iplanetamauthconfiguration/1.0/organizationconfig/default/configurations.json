@@ -1,0 +1,7 @@
+{
+  "realm" : "/alpha",
+  "entityType" : "iPlanetAMAuthConfiguration",
+  "entityId" : "default/Configurations",
+  "serviceComponent" : "Configurations",
+  "data" : { }
+}

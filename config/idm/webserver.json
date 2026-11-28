@@ -1,0 +1,17 @@
+{
+    "maxThreads" : {
+        "$int" : "&{openidm.webserver.max.threads|&{org.ops4j.pax.web.server.maxThreads|200}}"
+    },
+    "gzip" : {
+        "enabled" : true,
+        "includedMethods" : [
+            "GET"
+        ]
+    },
+    "maxQueueSize" : {
+        "$int" : "&{openidm.webserver.max.queue.size|1024}"
+    },
+    "maxRequestSuspendTime" : {
+        "$int" : "&{openidm.webserver.max.queue.wait|0}"
+    }
+}

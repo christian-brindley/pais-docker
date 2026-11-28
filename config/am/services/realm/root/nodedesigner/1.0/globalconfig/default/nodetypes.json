@@ -1,0 +1,7 @@
+{
+  "realm" : null,
+  "entityType" : "NodeDesigner",
+  "entityId" : "default/NodeTypes",
+  "serviceComponent" : "NodeTypes",
+  "data" : { }
+}

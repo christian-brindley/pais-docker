@@ -1,0 +1,16 @@
+{
+  "realm" : "/alpha",
+  "entityType" : "PageNode",
+  "entityId" : "default/6c8349cc-7260-3e62-a3b1-396831a8398a",
+  "serviceComponent" : "instance",
+  "data" : {
+    "nodes" : [ "cfcd2084-95d5-35ef-a6e7-dff9f98764db:UsernameCollectorNode:1:User Name Collector", "c4ca4238-a0b9-3382-8dcc-509a6f75849c:PasswordCollectorNode:1:Password Collector" ],
+    "stage" : null,
+    "pageDescription" : {
+      "en" : ""
+    },
+    "pageHeader" : {
+      "en" : "Sign In"
+    }
+  }
+}

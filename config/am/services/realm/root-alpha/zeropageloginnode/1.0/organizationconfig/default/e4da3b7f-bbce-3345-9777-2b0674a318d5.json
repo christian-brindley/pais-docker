@@ -1,0 +1,12 @@
+{
+  "realm" : "/alpha",
+  "entityType" : "ZeroPageLoginNode",
+  "entityId" : "default/e4da3b7f-bbce-3345-9777-2b0674a318d5",
+  "serviceComponent" : "instance",
+  "data" : {
+    "passwordHeader" : "X-OpenAM-Password",
+    "referrerWhiteList" : [ ],
+    "allowWithoutReferer" : true,
+    "usernameHeader" : "X-OpenAM-Username"
+  }
+}

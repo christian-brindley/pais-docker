@@ -1,0 +1,7 @@
+{
+  "realm" : "/alpha",
+  "entityType" : "AgentDataStoreDecisionNode",
+  "entityId" : "default",
+  "serviceComponent" : null,
+  "data" : { }
+}

@@ -1,0 +1,9 @@
+{
+  "realm" : "/alpha",
+  "entityType" : "UsernameCollectorNode",
+  "entityId" : "default/6c40132d-c3a5-492e-86b6-23f7978c8d47",
+  "serviceComponent" : "instance",
+  "data" : {
+    "autocompleteValues" : [ ]
+  }
+}

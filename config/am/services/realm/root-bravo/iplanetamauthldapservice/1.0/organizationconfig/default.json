@@ -1,0 +1,14 @@
+{
+  "realm" : "/bravo",
+  "entityType" : "iPlanetAMAuthLDAPService",
+  "entityId" : "default",
+  "serviceComponent" : null,
+  "data" : {
+    "userBindPassword" : {
+      "$string" : "&{am.authentication.modules.ldap.password|&{am.stores.user.password}}"
+    },
+    "openam-auth-ldap-connection-mode" : {
+      "$string" : "&{am.authentication.modules.ldap.connection.mode|LDAPS}"
+    }
+  }
+}

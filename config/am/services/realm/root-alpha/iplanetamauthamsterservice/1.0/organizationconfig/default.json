@@ -1,0 +1,11 @@
+{
+  "realm" : "/alpha",
+  "entityType" : "iPlanetAMAuthAmsterService",
+  "entityId" : "default",
+  "serviceComponent" : null,
+  "data" : {
+    "authorizedKeys" : {
+      "$string" : "&{amster.secrets.keys.path|&{am.server.config.dir}/security/keys/amster/authorized_keys}"
+    }
+  }
+}

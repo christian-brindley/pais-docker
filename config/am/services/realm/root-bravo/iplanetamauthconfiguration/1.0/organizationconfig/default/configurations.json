@@ -1,0 +1,7 @@
+{
+  "realm" : "/bravo",
+  "entityType" : "iPlanetAMAuthConfiguration",
+  "entityId" : "default/Configurations",
+  "serviceComponent" : "Configurations",
+  "data" : { }
+}

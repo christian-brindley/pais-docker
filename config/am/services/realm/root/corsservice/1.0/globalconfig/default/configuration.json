@@ -1,0 +1,7 @@
+{
+  "realm" : null,
+  "entityType" : "CorsService",
+  "entityId" : "default/configuration",
+  "serviceComponent" : "configuration",
+  "data" : { }
+}

@@ -1,0 +1,9 @@
+{
+  "realm" : null,
+  "entityType" : "amPluginService",
+  "entityId" : "default/plugins/org.forgerock.openam.auth.nodes.NodesPlugin",
+  "serviceComponent" : "plugin",
+  "data" : {
+    "version" : "50.0.0"
+  }
+}
